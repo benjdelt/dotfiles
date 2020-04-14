@@ -1,0 +1,9 @@
+# ssh keys
+*rsa*
+
+# Swap files
+*.swp
+
+# Vim plugins
+*/pack/vendor/start/*
+
