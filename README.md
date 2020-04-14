@@ -21,5 +21,3 @@ script:
 ```
 ./dotfiles/resore
 ```
-
-
