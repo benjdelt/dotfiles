@@ -29,6 +29,9 @@ if [[ ! -d $BACKUP_DIR ]]; then
 fi
 
 rsync -r --no-links ~/.[^.]* $BACKUP_DIR
+if [[ "$?" -ne 0 ]]; then
+    exit 1
+fi
 
 echo 'Creating links to dotfiles...'
 
@@ -36,10 +39,6 @@ cd $(pwd)/$SCRIPT_DIR
 
 for f in ./.[^.]*; do
     basename=`basename $f`
-#    echo "pwd $(pwd)"
-#    echo "f $f"
-#    echo "basename $basename"
-#    echo "script dir $SCRIPT_DIR"
     in_ignore `basename "$f"`
     if [[ "$?" -ne 0 ]]; then
 	remove_existing_dir $f
