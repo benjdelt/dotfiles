@@ -3,6 +3,11 @@
 readonly BACKUP_DIR=~/home_backup/
 readonly SCRIPT_DIR=`dirname "$0"`
 
+if [[ ! -d $BACKUP_DIR ]]; then
+    echo 'No backup found' >/dev/stderr
+    exit 1
+fi
+
 cd $(pwd)/$SCRIPT_DIR
 
 echo 'Removing links...'
