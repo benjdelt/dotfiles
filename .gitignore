@@ -5,5 +5,5 @@
 *.swp
 
 # Vim plugins
-*/pack/vendor/start/*
+.vim/pack/*
 

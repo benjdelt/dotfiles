@@ -2,11 +2,11 @@
 
 readonly BACKUP_DIR=~/home_backup/
 readonly IGNORE=(.git .gitignore .install.sh.swp .restore.sh.swp)
-readonly SCRIPT_DIR=`dirname "$0"`
+readonly SCRIPT_DIR=$(dirname "$0")
 
 in_ignore () {
     for i in "${IGNORE[@]}"; do
-	if [[ $i = $1 ]]; then
+	if [[ "$i" = "$1" ]]; then
             return 0
 	fi
     done
@@ -14,11 +14,12 @@ in_ignore () {
 }
 
 remove_existing_dir () {
-    local basename=`basename "$1"` 
+    local basename
+    basename=$(basename "$1")
     local target_dir=~/$basename
     if [[ -d $1 && -d $target_dir ]]; then
 	echo "target $target_dir"
-	rm -rf $target_dir
+	rm -rf "$target_dir"
     fi
 }
         
@@ -35,14 +36,14 @@ fi
 
 echo 'Creating links to dotfiles...'
 
-cd $(pwd)/$SCRIPT_DIR
+cd "$(pwd)/$SCRIPT_DIR" || exit 1
 
 for f in ./.[^.]*; do
-    basename=`basename $f`
-    in_ignore `basename "$f"`
+    basename=$(basename "$f")
+    in_ignore "$(basename "$f")"
     if [[ "$?" -ne 0 ]]; then
-	remove_existing_dir $f
-	ln -svf $(pwd)/$basename ~/
+	remove_existing_dir "$f"
+	ln -svf "$(pwd)/$basename" ~/
     fi
 done
 
