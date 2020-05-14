@@ -12,7 +12,7 @@ A collection of my personal configuration files for:
 ```
 ./dotfiles/install
 ```
-The script makes a backup of the existing dotfiles in the ~ directory before
+The script makes a backup of the existing dotfiles in this directory before
 creating symlinks to the dotfiles of the repo.
 Note that the install script can safely be run multiple times.
 - To restore the initial state of the ~ directory before running the install
