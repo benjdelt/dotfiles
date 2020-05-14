@@ -19,5 +19,5 @@ Note that the install script can safely be run multiple times.
 - To restore the initial state of the ~ directory before running the install
 script:
 ```
-./dotfiles/resore
+./dotfiles/restore
 ```
