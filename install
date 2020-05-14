@@ -23,25 +23,23 @@ remove_existing_dir () {
     fi
 }
         
-echo 'Backing up Home Directory dotfiles...'
-
 if [[ ! -d $BACKUP_DIR ]]; then
     mkdir -v $BACKUP_DIR
 fi
 
-rsync -r --no-links ~/.[^.]* $BACKUP_DIR
+cd "$(pwd)/$SCRIPT_DIR" || exit 1
+
 if [[ "$?" -ne 0 ]]; then
     exit 1
 fi
 
-echo 'Creating links to dotfiles...'
-
-cd "$(pwd)/$SCRIPT_DIR" || exit 1
+echo 'Backing up and creating links to dotfiles...'
 
 for f in ./.[^.]*; do
     basename=$(basename "$f")
     in_ignore "$(basename "$f")"
     if [[ "$?" -ne 0 ]]; then
+        rsync -rv --no-links "$HOME/$basename" $BACKUP_DIR
 	remove_existing_dir "$f"
 	ln -svf "$(pwd)/$basename" ~/
     fi
