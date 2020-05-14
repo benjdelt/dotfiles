@@ -4,7 +4,6 @@ A collection of my personal configuration files for:
 - Bash
 - Vim
 - tmux
-- git
 
 ## Installation
 
