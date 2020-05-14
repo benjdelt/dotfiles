@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-readonly BACKUP_DIR=~/home_backup/
-readonly IGNORE=(.git .gitignore .install.sh.swp .restore.sh.swp)
+readonly BACKUP_DIR=~/dotfiles/home_backup/
+readonly IGNORE=(.git .gitignore .swp$)
 readonly SCRIPT_DIR=$(dirname "$0")
 
 in_ignore () {
     for i in "${IGNORE[@]}"; do
-	if [[ "$i" = "$1" ]]; then
+	if [[ "$1" =~ $i ]]; then
             return 0
 	fi
     done

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-readonly BACKUP_DIR=~/home_backup/
+readonly BACKUP_DIR=~/dotfiles/home_backup/
 readonly SCRIPT_DIR=`dirname "$0"`
 
 if [[ ! -d $BACKUP_DIR ]]; then
