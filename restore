@@ -12,9 +12,13 @@ cd $(pwd)/$SCRIPT_DIR
 
 echo 'Removing links...'
 
-find ~/ -lname "$(pwd)/.*" -delete 
+find ~/ -lname "$(pwd)/.*" -print -delete 
 
 echo 'Restoring from backup...'
 
-cp -r $BACKUP_DIR.[^.]* ~/
+cp -rv $BACKUP_DIR.[^.]* ~/
+
+if [[ "$?" == 0 ]]; then
+    echo Done
+fi
 

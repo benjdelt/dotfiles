@@ -23,17 +23,13 @@ remove_existing_dir () {
     fi
 }
         
+echo 'Backing up and creating links to dotfiles...'
+
 if [[ ! -d $BACKUP_DIR ]]; then
     mkdir -v $BACKUP_DIR
 fi
 
 cd "$(pwd)/$SCRIPT_DIR" || exit 1
-
-if [[ "$?" -ne 0 ]]; then
-    exit 1
-fi
-
-echo 'Backing up and creating links to dotfiles...'
 
 for f in ./.[^.]*; do
     basename=$(basename "$f")
@@ -44,4 +40,8 @@ for f in ./.[^.]*; do
 	ln -svf "$(pwd)/$basename" ~/
     fi
 done
+
+if [[ "$?" == 0 ]]; then
+    echo Done
+fi
 
