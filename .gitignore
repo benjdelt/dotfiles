@@ -6,6 +6,7 @@
 
 # Vim plugins
 .vim/pack/*
+.vim/plugged/*
 
 # Backup Directory
 home_backup/
