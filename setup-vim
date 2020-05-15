@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+readonly BACKUP_DIR=~/dotfiles/home_backup/vim/
+readonly SCRIPT_DIR=$(dirname "$0")
+
+echo 'Seting up Vim configuration'
+
+cd "$(pwd)/$SCRIPT_DIR" || exit 1
+
+# Create the undodir directory if it doesn't exist
+if [[ ! -d "$HOME/.vim/undodir/" ]]; then
+    mkdir -pv "$HOME/.vim/undodir/"
+fi
+
+# Create the ftplugin directry if it doesn't exist
+if [[ ! -d "$HOME/.vim/after/ftplugin/" ]]; then
+    mkdir -pv "$HOME/.vim/after/ftplugin/"
+fi
+
+# Create a ftplugin directory in the backup directory if it doesn't exist
+if [[ ! -d "$BACKUP_DIR/ftplugin/" ]]; then
+    mkdir -pv "$BACKUP_DIR/ftplugin"
+fi
+
+# Backup existing ftplugin files into the backup directory
+for f in $HOME/.vim/after/ftplugin/*.vim; do
+    rsync -v --no-links $f "$BACKUP_DIR/ftplugin/"
+done
+
+# Link ftplugin files from dotfiles to the .vim directory
+for f in $SCRIPT_DIR/vim/ftplugin/*.vim; do
+    echo "FILE: $f"
+    basename=$(basename "$f")
+    echo "BASENAME: $basename"
+    ln -svf "$(pwd)/vim/ftplugin/$basename" "$HOME/.vim/after/ftplugin/"
+done
+
+if [[ "$?" == 0 ]]; then
+    echo Done
+fi
+
