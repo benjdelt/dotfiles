@@ -3,7 +3,7 @@
 readonly BACKUP_DIR=~/dotfiles/home_backup/dotfiles/
 readonly SCRIPT_DIR=`dirname "$0"`
 
-# Create backup directory if it doesn't exist
+# Exit if there is no backup directory
 if [[ ! -d $BACKUP_DIR ]]; then
     echo 'No backup found' >/dev/stderr
     exit 1
@@ -13,11 +13,11 @@ cd $(pwd)/$SCRIPT_DIR
 
 echo 'Removing links...'
 
-find ~/ -lname "$(pwd)/.*" -print -delete 
+find $HOME -lname "$(pwd)/.*" -print -delete 
 
 echo 'Restoring from backup...'
 
-cp -rv $BACKUP_DIR.[^.]* ~/
+cp -rv $BACKUP_DIR.[^.]* $HOME 
 
 if [[ "$?" == 0 ]]; then
     echo Done
