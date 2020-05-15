@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-readonly BACKUP_DIR=~/dotfiles/home_backup/
+readonly BACKUP_DIR=~/dotfiles/home_backup/dotfiles/
 readonly IGNORE=(.git .gitignore .swp$)
 readonly SCRIPT_DIR=$(dirname "$0")
 
+# Check if a fil is in the IGNORE list
 in_ignore () {
     for i in "${IGNORE[@]}"; do
 	if [[ "$1" =~ $i ]]; then
@@ -13,6 +14,7 @@ in_ignore () {
     return 1
 }
 
+# Remove existing directory to make way for the link
 remove_existing_dir () {
     local basename
     basename=$(basename "$1")
@@ -23,20 +25,25 @@ remove_existing_dir () {
     fi
 }
         
-echo 'Backing up and creating links to dotfiles...'
-
-if [[ ! -d $BACKUP_DIR ]]; then
-    mkdir -v $BACKUP_DIR
-fi
-
 cd "$(pwd)/$SCRIPT_DIR" || exit 1
 
+echo 'Backing up and creating links to dotfiles...'
+
+# Create the backup directory if it doesn't exist
+if [[ ! -d "$BACKUP_DIR" ]]; then
+    mkdir -v "$BACKUP_DIR"
+fi
+
+# Backup dotfiles in the HOME directory and link dotfiles into it
 for f in ./.[^.]*; do
     basename=$(basename "$f")
+    # Check if the file is in the IGNORE list
     in_ignore "$(basename "$f")"
     if [[ "$?" -ne 0 ]]; then
-        rsync -rv --no-links "$HOME/$basename" $BACKUP_DIR
+	# Backup file
+        rsync -rv --no-links "$HOME/$basename" "$BACKUP_DIR"
 	remove_existing_dir "$f"
+	# Link to dotfile
 	ln -svf "$(pwd)/$basename" ~/
     fi
 done

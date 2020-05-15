@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-readonly BACKUP_DIR=~/dotfiles/home_backup/
+readonly BACKUP_DIR=~/dotfiles/home_backup/dotfiles/
 readonly SCRIPT_DIR=`dirname "$0"`
 
+# Create backup directory if it doesn't exist
 if [[ ! -d $BACKUP_DIR ]]; then
     echo 'No backup found' >/dev/stderr
     exit 1
