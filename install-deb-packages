@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+readonly SCRIPT_DIR=$(dirname "$0")
+
+cd "$(pwd)/$SCRIPT_DIR"
+
+echo 'Installing deb packages...'
+
+# Update and upgrade package manager
+sudo apt update
+sudo apt upgrade
+
+# Install Python
+if ! python3 -V ; then
+    sudo apt install python3
+fi
+
+# Install pip
+if ! python3 -m pip -V ; then
+    sudo apt install python3-venv python3-pip
+fi
+
+# Install node.js
+if ! node -v ; then
+    curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+    sudo apt install nodejs
+fi
+
+# Install npm
+if ! npm -v ; then
+    sudo apt install npm
+fi
+
+# Install nvm
+if ! nvm -v ; then
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+fi
+
+# Install yarn
+if ! yarn --version ; then
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    sudo apt update && sudo apt install --no-install-recommends yarn || sudo apt install yarn
+fi
+
+# Install Ruby
+if ! ruby -v ; then
+    sudo apt install ruby-full
+fi
+
+if [[ "$?" == 0 ]]; then
+    echo 'Deb packages installation complete'
+fi
