@@ -9,6 +9,7 @@ A collection of my personal configuration files for:
 ## Requirements
 
 The scripts assume that the following are already installed:
+- cURL
 - Git (obviously)
 - Vim >= 8
 - Firacode Nerd Font Mono (for Starship prompt)
