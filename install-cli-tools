@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+readonly SCRIPT_DIR=$(dirname "$0")
+
+cd "$(pwd)/$SCRIPT_DIR" || exit 1
+
+# Install Starship prompt
+if ! starship -V ; then
+    curl -fsSL https://starship.rs/install.sh | bash
+fi
+ 
