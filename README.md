@@ -17,12 +17,13 @@ The scripts assume that the following are already installed:
 ## Installation
 
 - Clone this repository in your HOME directory and cd into it
-- Run the install dotfiles script:
+- Run the install script:
+```
+./install-all
+```
+- Scripts can be run separately for dotfiles and vim setup
 ```
 ./install-dotfiles
-```
-- Run the setup vim script:
-```
 ./setup-vim
 ```
 The scripts make a backup of the existing targeted files in this directory
@@ -36,13 +37,13 @@ vim
 
 ## Restore Initial State
 
-- To restore the initial state of the HOME directory before running the install
-script:
+- To restore the backup made during installation:
+```
+./restore-all
+```
+- Restore scripts can also be run separately for dotfiles and vim setup
 ```
 ./restore-dotfiles
-```
-- To restore the state of the .vim folder:
-```
 ./restore-vim
 ```
 ## Installed Tools and Plugins
