@@ -20,6 +20,6 @@ echo 'Restoring from backup...'
 cp -rv $BACKUP_DIR.[^.]* $HOME 
 
 if [[ "$?" == 0 ]]; then
-    echo Done
+    echo 'Dotfiles restauration complete'
 fi
 

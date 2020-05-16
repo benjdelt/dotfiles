@@ -21,6 +21,6 @@ echo 'Restoring from backup...'
 cp -rv $BACKUP_DIR/ftplugin/*.vim $HOME/.vim/after/ftplugin/
 
 if [[ "$?" == 0 ]]; then
-    echo Done
+    echo 'Vim restauration complete'
 fi
 

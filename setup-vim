@@ -36,6 +36,6 @@ for f in $SCRIPT_DIR/vim/ftplugin/*.vim; do
 done
 
 if [[ "$?" == 0 ]]; then
-    echo Done
+    echo 'Vim setup complete'
 fi
 

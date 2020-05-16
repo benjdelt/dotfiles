@@ -49,6 +49,6 @@ for f in ./dotfiles/.[^.]*; do
 done
 
 if [[ "$?" == 0 ]]; then
-    echo Done
+    echo 'Dotfiles installation complete'
 fi
 
