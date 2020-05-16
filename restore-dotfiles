@@ -13,7 +13,7 @@ cd $(pwd)/$SCRIPT_DIR
 
 echo 'Removing links...'
 
-find $HOME -lname "$(pwd)/.*" -print -delete 
+find $HOME -lname "$(pwd)/dotfiles/.*" -print -delete 
 
 echo 'Restoring from backup...'
 

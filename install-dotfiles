@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-readonly BACKUP_DIR=~/dotfiles/backup/dotfiles/
+readonly BACKUP_DIR=$HOME/dotfiles/backup/dotfiles/
 readonly IGNORE=(.git .gitignore .swp$)
 readonly SCRIPT_DIR=$(dirname "$0")
 
@@ -18,7 +18,7 @@ in_ignore () {
 remove_existing_dir () {
     local basename
     basename=$(basename "$1")
-    local target_dir=~/$basename
+    local target_dir=$HOME/$basename
     if [[ -d $1 && -d $target_dir ]]; then
 	echo "target $target_dir"
 	rm -rf "$target_dir"
@@ -35,7 +35,7 @@ if [[ ! -d "$BACKUP_DIR" ]]; then
 fi
 
 # Backup dotfiles in the HOME directory and link dotfiles into it
-for f in ./.[^.]*; do
+for f in ./dotfiles/.[^.]*; do
     basename=$(basename "$f")
     # Check if the file is in the IGNORE list
     in_ignore "$(basename "$f")"
@@ -44,7 +44,7 @@ for f in ./.[^.]*; do
         rsync -rv --no-links "$HOME/$basename" "$BACKUP_DIR"
 	remove_existing_dir "$f"
 	# Link to dotfile
-	ln -svf "$(pwd)/$basename" ~/
+	ln -svf "$(pwd)/dotfiles/$basename" "$HOME"
     fi
 done
 
