@@ -37,7 +37,7 @@ symbol = " "
 symbol = " "
 
 [git_branch]
-style = "bold cyan"
+style = "#86c5da"
 symbol = " "
 
 [git_status]
