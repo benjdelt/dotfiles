@@ -9,5 +9,5 @@
 .vim/plugged/*
 
 # Backup Directory
-home_backup/
+backup/
 

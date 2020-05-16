@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-readonly BACKUP_DIR=~/dotfiles/home_backup/dotfiles/
+readonly BACKUP_DIR=~/dotfiles/backup/dotfiles/
 readonly IGNORE=(.git .gitignore .swp$)
 readonly SCRIPT_DIR=$(dirname "$0")
 
@@ -31,7 +31,7 @@ echo 'Backing up and creating links to dotfiles...'
 
 # Create the backup directory if it doesn't exist
 if [[ ! -d "$BACKUP_DIR" ]]; then
-    mkdir -v "$BACKUP_DIR"
+    mkdir -pv "$BACKUP_DIR"
 fi
 
 # Backup dotfiles in the HOME directory and link dotfiles into it

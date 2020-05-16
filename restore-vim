@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-readonly BACKUP_DIR=~/dotfiles/home_backup/vim
+readonly BACKUP_DIR=~/dotfiles/backup/vim
 readonly SCRIPT_DIR=`dirname "$0"`
 
 # Exit if there is no backup directory
