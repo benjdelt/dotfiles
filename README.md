@@ -6,6 +6,10 @@ A collection of my personal configuration files for:
 - tmux
 - Starship prompt
 
+The repo also includes scripts to setup a machine: installing different
+programming languages and tools. [See the full list of  
+installed packages, tools and plugins](#installed-packages-tools-and-plugins).
+
 ## Requirements
 
 The scripts assume that the following are already installed:
@@ -23,6 +27,7 @@ The scripts assume that the following are already installed:
 ```
 - Scripts can be run separately for dotfiles and vim setup
 ```
+./install-deb-packages
 ./install-cli-tools
 ./install-dotfiles
 ./setup-vim
@@ -47,9 +52,19 @@ vim
 ./restore-dotfiles
 ./restore-vim
 ```
-## Installed Tools and Plugins
+## Installed Packages, Tools and Plugins
 
 The following are installed by the scripts:
+
+### Deb Packages
+
+- Python3
+- pip
+- node.js
+- npm
+- nvm
+- Yarn
+- Ruby
 
 ### Command Line Tools
 
