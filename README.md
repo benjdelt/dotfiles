@@ -23,6 +23,7 @@ The scripts assume that the following are already installed:
 ```
 - Scripts can be run separately for dotfiles and vim setup
 ```
+./install-cli-tools
 ./install-dotfiles
 ./setup-vim
 ```
@@ -49,6 +50,10 @@ vim
 ## Installed Tools and Plugins
 
 The following are installed by the scripts:
+
+### Command Line Tools
+
+- Starship prompt
 
 ### Vim
 
