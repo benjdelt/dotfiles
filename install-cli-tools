@@ -9,3 +9,8 @@ if ! starship -V ; then
     curl -fsSL https://starship.rs/install.sh | bash
 fi
  
+# Install tldr pages
+if ! tldr -V ; then
+    npm install -g tldr
+fi
+

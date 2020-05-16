@@ -69,6 +69,7 @@ The following are installed by the scripts:
 ### Command Line Tools
 
 - Starship prompt
+- tldr pages
 
 ### Vim
 
