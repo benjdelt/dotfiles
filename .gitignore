@@ -11,3 +11,6 @@
 # Backup Directory
 backup/
 
+# npm update
+*/.config/configstore/update-notifier-npm.json
+
