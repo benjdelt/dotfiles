@@ -4,6 +4,8 @@ readonly SCRIPT_DIR=$(dirname "$0")
 
 cd "$(pwd)/$SCRIPT_DIR" || exit 1
 
+echo 'Installing command line tools...'
+
 # Install Starship prompt
 if ! starship -V ; then
     curl -fsSL https://starship.rs/install.sh | bash
@@ -12,5 +14,9 @@ fi
 # Install tldr pages
 if ! tldr -V ; then
     npm install -g tldr
+fi
+
+if [[ "$?" == 0 ]]; then
+    echo 'Command line tools installation complete'
 fi
 
