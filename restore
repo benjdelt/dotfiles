@@ -4,7 +4,7 @@ readonly SCRIPT_DIR=$(dirname "$0")
 
 cd "$(pwd)/$SCRIPT_DIR" || exit 1
 
-optlist=":Adhv"
+optlist=":adhv"
 
 # Process help first
 while getopts $optlist options; do
@@ -20,7 +20,7 @@ OPTIND=1
 # Process the run All scripts option in priority
 while getopts $optlist options; do
     case ${options} in
-	A) 
+	a) 
 	    echo 'Running All restore scripts'
 	    ./scripts/restore-dotfiles
 	    ./scripts/restore-vim

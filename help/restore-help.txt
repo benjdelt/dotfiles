@@ -2,7 +2,7 @@ Usage: restore [OPTION]...
 Run scripts to restore backups made by install scripts. Note that not all
 install scripts perform backups
 
-  -A           run all the scripts (equivalent to -dv)
+  -a           run all the scripts (equivalent to -dv)
   -d           restore the backup made by the install-dotfiles script
   -h           display this help and exit
   -v           restore the backup made by the setup-vim script
