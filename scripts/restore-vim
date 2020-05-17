@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 readonly BACKUP_DIR=~/dotfiles/backup/vim
-readonly SCRIPT_DIR=`dirname "$0"`
+readonly BASE_DIR=$(dirname "$0")/..
 
 # Exit if there is no backup directory
 if [[ ! -d $BACKUP_DIR ]]; then
@@ -9,7 +9,7 @@ if [[ ! -d $BACKUP_DIR ]]; then
     exit 1
 fi
 
-cd "$(pwd)/$SCRIPT_DIR" || exit 1
+cd "$(pwd)/$BASE_DIR" || exit 1
 
 # Restore ftplugin files
 echo 'Removing links...'
@@ -18,7 +18,7 @@ find "$HOME/.vim/after/ftplugin" -lname "$(pwd)/vim/ftplugin/*" -print -delete
 
 echo 'Restoring from backup...'
 
-cp -rv $BACKUP_DIR/ftplugin/*.vim $HOME/.vim/after/ftplugin/
+cp -frv $BACKUP_DIR/ftplugin/*.vim $HOME/.vim/after/ftplugin/
 
 if [[ "$?" == 0 ]]; then
     echo 'Vim restauration complete'

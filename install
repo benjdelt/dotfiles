@@ -10,7 +10,7 @@ optlist=":aAdhptv"
 while getopts $optlist options; do
     case ${options} in
 	h)
-	    cat ./help/install-help.txt
+	    cat ./hel./scripts/install-help.txt
 	    exit 0
 	    ;;
     esac
@@ -22,10 +22,10 @@ while getopts $optlist options; do
     case ${options} in
 	A) 
 	    echo 'Running All install scripts...'
-	    ./install-deb-packages
-	    ./install-cli-tools
-	    ./install-dotfiles
-	    ./setup-vim
+	    ./scripts/install-deb-packages
+	    ./scripts/install-cli-tools
+	    ./scripts/install-dotfiles
+	    ./scripts/setup-vim
             if [[ "$?" == 0 ]]; then
                 echo 'Installation script run successfully'
 	        exit 0 
@@ -40,9 +40,9 @@ while getopts $optlist options; do
     case ${options} in
         a) 
 	    echo 'Running all install scripts except install-deb-packages...'
-	    ./install-cli-tools
-	    ./install-dotfiles
-	    ./setup-vim
+	    ./scripts/install-cli-tools
+	    ./scripts/install-dotfiles
+	    ./scripts/setup-vim
             if [[ "$?" == 0 ]]; then
                 echo 'Installation script run successfully'
 	        exit 0 
@@ -56,19 +56,19 @@ OPTIND=1
 while getopts $optlist options; do
     case ${options} in
 	d) echo 'Running install-dotfiles...' 
-	./install-dotfiles
+	./scripts/install-dotfiles
 	;;
 	p) echo 'Running install-deb-packages' 
-	./install-deb-packages
+	./scripts/install-deb-packages
 	;;
 	t) echo 'Running install-cli-tools' 
-	./install-cli-tools
+	./scripts/install-cli-tools
 	;;
 	v) echo 'Running setup-vim...' 
-	./setup-vim
+	./scripts/setup-vim
 	;;
 	\?) echo "Invalid option: $OPTARG" 1>&2
-            echo "Try './install -h' for more information" 1>&2
+            echo "Try './scripts/install -h' for more information" 1>&2
 	    exit 1
 	    ;;
     esac
@@ -78,14 +78,14 @@ shift $((OPTIND -1))
 # Handle missing option
 if ((OPTIND == 1)); then
     echo 'Missing option' 1>&2
-    echo "Try './install -h' for more information" 1>&2
+    echo "Try './scripts/install -h' for more information" 1>&2
     exit 1
 fi
 
 # Handle invalid arguments
 if [[ "$#" > 0 ]]; then
     echo "Unrecognized argument(s): $@" 1>&2
-    echo "Try './install -h' for more information" 1>&2
+    echo "Try './scripts/install -h' for more information" 1>&2
     exit 1
 fi
 

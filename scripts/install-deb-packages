@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-readonly SCRIPT_DIR=$(dirname "$0")
+readonly BASE_DIR=$(dirname "$0")/..
 
-cd "$(pwd)/$SCRIPT_DIR"
+cd "$(pwd)/$BASE_DIR"
 
 echo 'Installing deb packages...'
 

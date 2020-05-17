@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-readonly SCRIPT_DIR=$(dirname "$0")
+readonly BASE_DIR=$(dirname "$0")/..
 
-cd "$(pwd)/$SCRIPT_DIR" || exit 1
+cd "$(pwd)/$BASE_DIR" || exit 1
 
 echo 'Installing command line tools...'
 

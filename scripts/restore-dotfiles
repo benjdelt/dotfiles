@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 readonly BACKUP_DIR=~/dotfiles/backup/dotfiles/
-readonly SCRIPT_DIR=`dirname "$0"`
+readonly BASE_DIR=$(dirname "$0")/..
 
 # Exit if there is no backup directory
 if [[ ! -d $BACKUP_DIR ]]; then
@@ -9,7 +9,7 @@ if [[ ! -d $BACKUP_DIR ]]; then
     exit 1
 fi
 
-cd $(pwd)/$SCRIPT_DIR
+cd $(pwd)/$BASE_DIR
 
 echo 'Removing links...'
 

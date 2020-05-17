@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 readonly BACKUP_DIR=~/dotfiles/backup/vim/
-readonly SCRIPT_DIR=$(dirname "$0")
+readonly BASE_DIR=$(dirname "$0")/..
 
 echo 'Seting up Vim configuration'
 
-cd "$(pwd)/$SCRIPT_DIR" || exit 1
+cd "$(pwd)/$BASE_DIR" || exit 1
 
 # Create the undodir directory if it doesn't exist
 if [[ ! -d "$HOME/.vim/undodir/" ]]; then
@@ -28,10 +28,9 @@ for f in $HOME/.vim/after/ftplugin/*.vim; do
 done
 
 # Link ftplugin files from dotfiles to the .vim directory
-for f in $SCRIPT_DIR/vim/ftplugin/*.vim; do
-    echo "FILE: $f"
+shopt -s nullglob
+for f in ./vim/ftplugin/*.vim; do
     basename=$(basename "$f")
-    echo "BASENAME: $basename"
     ln -svf "$(pwd)/vim/ftplugin/$basename" "$HOME/.vim/after/ftplugin/"
 done
 

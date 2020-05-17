@@ -2,7 +2,7 @@
 
 readonly BACKUP_DIR=$HOME/dotfiles/backup/dotfiles/
 readonly IGNORE=(.git .gitignore .swp$)
-readonly SCRIPT_DIR=$(dirname "$0")
+readonly BASE_DIR=$(dirname "$0")/..
 
 # Check if a fil is in the IGNORE list
 in_ignore () {
@@ -25,7 +25,7 @@ remove_existing_dir () {
     fi
 }
         
-cd "$(pwd)/$SCRIPT_DIR" || exit 1
+cd "$(pwd)/$BASE_DIR" || exit 1
 
 echo 'Backing up and creating links to dotfiles...'
 
