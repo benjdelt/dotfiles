@@ -10,7 +10,7 @@ optlist=":aAdhptv"
 while getopts $optlist options; do
     case ${options} in
 	h)
-	    cat ./help.txt
+	    cat ./install-help.txt
 	    exit 0
 	    ;;
     esac
