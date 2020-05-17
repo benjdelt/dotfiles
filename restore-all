@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-readonly SCRIPT_DIR=$(dirname "$0")
-
-cd "$(pwd)/$SCRIPT_DIR" || exit 1
-
-./restore-dotfiles
-./restore-vim
-
