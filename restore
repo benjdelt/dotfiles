@@ -21,9 +21,11 @@ OPTIND=1
 while getopts $optlist options; do
     case ${options} in
 	A) 
-	    echo 'All'
+	    echo 'Running All restore scripts'
+	    ./restore-dotfiles
+	    ./restore-vim
             if [[ "$?" == 0 ]]; then
-                echo 'Restauration script run successfully'
+                echo 'Restoration script run successfully'
 	        exit 0 
             fi
 	    ;;
@@ -34,8 +36,12 @@ OPTIND=1
 # Finally process the rest of the options
 while getopts $optlist options; do
     case ${options} in
-	d) echo 'dotfiles' ;;
-	v) echo 'vim' ;;
+	d) echo 'Running restore-dotfiles...' 
+	./restore-dotfiles
+	;;
+	v) echo 'Running restore-vim...' 
+	./restore-vim
+	;;
 	\?) echo "Invalid option: $OPTARG" 1>&2
             echo "Try './install -h' for more information" 1>&2
 	    exit 1
