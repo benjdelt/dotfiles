@@ -1,0 +1,24 @@
+Usage: install [OPTION]...
+Run scripts to install and setup command line environment. It includes
+programming languages, packages managers, dotfiles, command line tools, and Vim
+plugins.
+
+  -a           run all the scripts except for deb-packages (equivalent to -dtv)
+  -A           run all the scripts (equivalent to -dptv)
+  -d           run the script to link the including dotfiles to
+               the HOME directory (./install-dotfiles); create a
+               backup of the overwritten files
+  -h           display this help and exit
+  -p           run the script to install deb packages, that
+               includes programming languages and package
+               managers (./install-deb-packages)
+  -t           run the script to install command line tools
+               (./install-cli-tools)
+  -v           adds personal files to the Vim configuration
+               (./setup-vim); create a backup of the overwritten
+               files
+
+For a full list of the packages installed by these scripts, see the README.md
+file
+Repository: <https://github.com/benjdelt/dotfiles>
+
