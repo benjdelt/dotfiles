@@ -10,7 +10,7 @@ optlist=":aAdhptv"
 while getopts $optlist options; do
     case ${options} in
 	h)
-	    echo 'help'
+	    cat ./help.txt
 	    exit 0
 	    ;;
     esac
@@ -22,7 +22,10 @@ while getopts $optlist options; do
     case ${options} in
 	A) 
 	    echo 'All'
-	    exit 0 
+            if [[ "$?" == 0 ]]; then
+                echo 'Installation script run successfully'
+	        exit 0 
+            fi
 	    ;;
     esac
 done
@@ -33,7 +36,10 @@ while getopts $optlist options; do
     case ${options} in
         a) 
 	    echo 'Almost all'
-	    exit 0 
+            if [[ "$?" == 0 ]]; then
+                echo 'Installation script run successfully'
+	        exit 0 
+            fi
 	    ;;
     esac
 done
@@ -47,9 +53,28 @@ while getopts $optlist options; do
 	t) echo 'tools' ;;
 	v) echo 'vim' ;;
 	\?) echo "Invalid option: $OPTARG" 1>&2
-            echo 'Try './install -h' for more information' 1>&2
+            echo "Try './install -h' for more information" 1>&2
+	    exit 1
 	    ;;
     esac
 done
 shift $((OPTIND -1))
+
+# Handle missing option
+if ((OPTIND == 1)); then
+    echo 'Missing option' 1>&2
+    echo "Try './install -h' for more information" 1>&2
+    exit 1
+fi
+
+# Handle invalid arguments
+if [[ "$#" > 0 ]]; then
+    echo "Unrecognized argument(s): $@" 1>&2
+    echo "Try './install -h' for more information" 1>&2
+    exit 1
+fi
+
+if [[ "$?" == 0 ]]; then
+    echo 'Installation script run successfully'
+fi
 
