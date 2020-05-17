@@ -14,25 +14,22 @@ installed packages, tools and plugins](#installed-packages-tools-and-plugins).
 
 The scripts assume that the following are already installed:
 - cURL
-- Git (obviously)
+- Git
 - Vim >= 8
 - Firacode Nerd Font Mono (for Starship prompt)
 
 ## Installation
 
 - Clone this repository in your HOME directory and cd into it
-- Run the install script:
+- Run the install script with the appropriate option(s):
 ```
-./install-all
+./install -a
 ```
-- Scripts can be run separately for dotfiles and vim setup
+For a list of available options, run the install script with the help option:
 ```
-./install-deb-packages
-./install-cli-tools
-./install-dotfiles
-./setup-vim
+./install -h
 ```
-The scripts make a backup of the existing targeted files in this directory
+When applicable, the scripts make a backup of the existing targeted files 
 before creating symlinks to the dotfiles of the repo.
 Note that the install scripts can safely be run multiple times.
 
@@ -43,15 +40,16 @@ vim
 
 ## Restore Initial State
 
-- To restore the backup made during installation:
+- To restore the backup made during installation, run the install script with 
+the appropriate option(s):
 ```
-./restore-all
+./restore -a
 ```
-- Restore scripts can also be run separately for dotfiles and vim setup
+For a list of available options, run the restore script with the help option:
 ```
-./restore-dotfiles
-./restore-vim
+./restore -h
 ```
+
 ## Installed Packages, Tools and Plugins
 
 The following are installed by the scripts:
