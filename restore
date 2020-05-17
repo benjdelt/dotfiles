@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+readonly SCRIPT_DIR=$(dirname "$0")
+
+cd "$(pwd)/$SCRIPT_DIR" || exit 1
+
+optlist=":Adhv"
+
+# Process help first
+while getopts $optlist options; do
+    case ${options} in
+	h)
+	    cat ./restore-help.txt
+	    exit 0
+	    ;;
+    esac
+done
+OPTIND=1
+
+# Process the run All scripts option in priority
+while getopts $optlist options; do
+    case ${options} in
+	A) 
+	    echo 'All'
+            if [[ "$?" == 0 ]]; then
+                echo 'Restauration script run successfully'
+	        exit 0 
+            fi
+	    ;;
+    esac
+done
+OPTIND=1
+
+# Finally process the rest of the options
+while getopts $optlist options; do
+    case ${options} in
+	d) echo 'dotfiles' ;;
+	v) echo 'vim' ;;
+	\?) echo "Invalid option: $OPTARG" 1>&2
+            echo "Try './install -h' for more information" 1>&2
+	    exit 1
+	    ;;
+    esac
+done
+shift $((OPTIND -1))
+
+# Handle missing option
+if ((OPTIND == 1)); then
+    echo 'Missing option' 1>&2
+    echo "Try './install -h' for more information" 1>&2
+    exit 1
+fi
+
+# Handle invalid arguments
+if [[ "$#" > 0 ]]; then
+    echo "Unrecognized argument(s): $@" 1>&2
+    echo "Try './install -h' for more information" 1>&2
+    exit 1
+fi
+
+if [[ "$?" == 0 ]]; then
+    echo 'Installation script run successfully'
+fi
+
