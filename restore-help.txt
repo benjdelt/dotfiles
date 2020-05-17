@@ -1,0 +1,13 @@
+Usage: restore [OPTION]...
+Run scripts to restore backups made by install scripts. Note that not all
+install scripts perform backups
+
+  -A           run all the scripts (equivalent to -dptv)
+  -d           restore the backup made by the install-dotfiles script
+  -h           display this help and exit
+  -v           restore the backup made by the setup-vim script
+
+To find out which scripts perform backups, run './install -h' or see the 
+README.md file
+Repository: <https://github.com/benjdelt/dotfiles>
+
