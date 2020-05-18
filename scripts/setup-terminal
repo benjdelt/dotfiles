@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# Import system functions
+source ./system.sh
+
+readonly BACKUP_DIR=$HOME/dotfiles/backup/terminal
+readonly BASE_DIR=$(dirname "$0")/..
+
+cd "$(pwd)/$BASE_DIR" || exit 1
+
+# Create the backup directory if it doesn't exist
+if [[ ! -d "$BACKUP_DIR" ]]; then
+    mkdir -pv "$BACKUP_DIR"
+fi
+
+# Backup and link terminal configuration file for WSL
+if [[ $(get_os) = 'wsl' ]]; then
+    user_path=$(find /mnt/c/Users/ -maxdepth 1 -type d -iname 'ben*')
+    config_path=$user_path/AppData/Roaming/wsltty
+    # Backup file
+    rsync -rv --no-links $config_path/config "$BACKUP_DIR/wsltty/"
+    # Link to dotfile
+    ln -svf "$(pwd)/terminal/wsltty/config" $config_path
+fi
+
+if [[ "$?" == 0 ]]; then
+    echo 'Terminal configuration installation complete'
+fi
+
