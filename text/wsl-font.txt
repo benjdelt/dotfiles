@@ -1,0 +1,3 @@
+The terminal configuration needs a specific font that might need to be
+installed on Windows. The Windows explorer has been launched in the correct 
+directory. Right click on the following font and install it:

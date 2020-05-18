@@ -10,7 +10,7 @@ optlist=":adhv"
 while getopts $optlist options; do
     case ${options} in
 	h)
-	    cat ./help/restore-help.txt
+	    cat ./text/restore-help.txt
 	    exit 0
 	    ;;
     esac
