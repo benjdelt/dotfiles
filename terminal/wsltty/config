@@ -1,0 +1,5 @@
+# To use common configuration in %APPDATA%\mintty, simply remove this file
+ThemeFile=
+Font=FiraCode Nerd Font Mono
+CursorType=block
+Term=xterm
