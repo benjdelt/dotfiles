@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 
-# Import system functions
-source ./system.sh
-
 readonly BACKUP_DIR=$HOME/dotfiles/backup/terminal
 readonly BASE_DIR=$(dirname "$0")/..
+readonly USER_STRING='ben*'
+readonly FONT='Droid Sans Mono'
+readonly RED_BOLD='\033[1;91m'
+readonly RESET_FORMAT='\033[0m'
 
 cd "$(pwd)/$BASE_DIR" || exit 1
+
+# Import system functions
+source ./scripts/system.sh
 
 # Create the backup directory if it doesn't exist
 if [[ ! -d "$BACKUP_DIR" ]]; then
@@ -15,12 +19,22 @@ fi
 
 # Backup and link terminal configuration file for WSL
 if [[ $(get_os) = 'wsl' ]]; then
-    user_path=$(find /mnt/c/Users/ -maxdepth 1 -type d -iname 'ben*')
+    # Check if the font is installed
+    is_font=$(find /mnt/c/Windows/Fonts/ -maxdepth 1 -type f -iname "$FONT*") 
+    if [[ -z $is_font ]]; then
+	echo -e "${RED_BOLD}"
+	cat ./text/wsl-font.txt
+	echo -e "$FONT Nerd Font Complete Mono Windows Compatible"
+	echo -e "${RESET_FORMAT}"
+	explorer.exe '.\font\'$FONT
+    fi
+    user_path=$(find /mnt/c/Users/ -maxdepth 1 -type d -iname $USER_STRING)
     config_path=$user_path/AppData/Roaming/wsltty
     # Backup file
     rsync -rv --no-links $config_path/config "$BACKUP_DIR/wsltty/"
     # Link to dotfile
-    ln -svf "$(pwd)/terminal/wsltty/config" $config_path
+    # ln -svf "$(pwd)/terminal/wsltty/config" $config_path
+    cp -fv "$(pwd)/terminal/wsltty/config" $config_path/
 fi
 
 if [[ "$?" == 0 ]]; then
