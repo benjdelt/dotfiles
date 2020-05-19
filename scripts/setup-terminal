@@ -12,9 +12,7 @@ cd "$(pwd)/$BASE_DIR" || exit 1
 source ./scripts/system.sh
 
 # Create the backup directory if it doesn't exist
-if [[ ! -d "$BACKUP_DIR" ]]; then
-    mkdir -pv "$BACKUP_DIR"
-fi
+mkdir -pv "$BACKUP_DIR"
 
 # Backup and link terminal configuration file for WSL
 if [[ $(get_os) = 'wsl' ]]; then
@@ -40,6 +38,28 @@ if [[ $(get_os) = 'wsl' ]]; then
     # Link to dotfile
     # ln -svf "$(pwd)/terminal/wsltty/config" $config_path
     cp -fv "$(pwd)/terminal/wsltty/config" $config_path/
+fi
+
+# Setup configuration for Linux terminal
+if [[ $(get_os) = 'linux' ]]; then
+    # Check if the font is installed
+    is_font=$(fc-list | grep DroidSansMono) 
+    # If not, dowload it in the right folder
+    if [[ -z $is_font ]]; then
+        mkdir -p $HOME/.local/share/fonts
+        cd $HOME/.local/share/fonts 
+	url='https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf'	
+	font_name="Droid Sans Mono for Powerline Nerd Font Complete.otf"
+        curl -fLo $font_name  $url
+	cd -
+    fi
+    # Check if the font is now installed
+    is_font=$(fc-list | grep DroidSansMono) 
+    # If the installation didn't work fall back on the font present in the repo
+    if [[ -z $is_font ]]; then
+        cp "./font/$font_name" $HOME/.local/share/fonts
+    fi
+    # Configure terminal
 fi
 
 if [[ "$?" == 0 ]]; then
