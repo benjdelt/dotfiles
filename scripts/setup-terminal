@@ -35,8 +35,7 @@ if [[ $(get_os) = 'wsl' ]]; then
     config_path=$user_path/AppData/Roaming/wsltty
     # Backup file
     rsync -rv --no-links $config_path/config "$BACKUP_DIR/wsltty/"
-    # Link to dotfile
-    # ln -svf "$(pwd)/terminal/wsltty/config" $config_path
+    # Linux symlinks don't work in Windows, the file must be copied
     cp -fv "$(pwd)/terminal/wsltty/config" $config_path/
 fi
 
@@ -67,5 +66,7 @@ fi
 
 if [[ "$?" == 0 ]]; then
     echo 'Terminal configuration installation complete'
+    echo 'It may be necessary to relaunch the terminal for the changes to take'
+    echo 'effect'
 fi
 
