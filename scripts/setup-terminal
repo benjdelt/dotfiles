@@ -3,7 +3,6 @@
 readonly BACKUP_DIR=$HOME/dotfiles/backup/terminal
 readonly BASE_DIR=$(dirname "$0")/..
 readonly USER_STRING='ben*'
-readonly FONT='Droid Sans Mono'
 readonly RED_BOLD='\033[1;91m'
 readonly RESET_FORMAT='\033[0m'
 
@@ -20,13 +19,19 @@ fi
 # Backup and link terminal configuration file for WSL
 if [[ $(get_os) = 'wsl' ]]; then
     # Check if the font is installed
-    is_font=$(find /mnt/c/Windows/Fonts/ -maxdepth 1 -type f -iname "$FONT*") 
+    is_font=$(find /mnt/c/Windows/Fonts/ -maxdepth 1 -type f -iname 'Droid*') 
     if [[ -z $is_font ]]; then
+	cd ./font/
+	url='https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.otf'	
+        curl -fLo "Droid Sans Mono Nerd Font Complete Mono Windows Compatible.otf" $url 
+	# Open the Windows explorer so the user can install the font
+	explorer.exe .
+	cd ..
+	# Message to install font
 	echo -e "${RED_BOLD}"
 	cat ./text/wsl-font.txt
-	echo -e "$FONT Nerd Font Complete Mono Windows Compatible"
+	echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
 	echo -e "${RESET_FORMAT}"
-	explorer.exe '.\font\'$FONT
     fi
     user_path=$(find /mnt/c/Users/ -maxdepth 1 -type d -iname $USER_STRING)
     config_path=$user_path/AppData/Roaming/wsltty
