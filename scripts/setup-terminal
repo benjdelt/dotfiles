@@ -49,7 +49,7 @@ if [[ $(get_os) = 'linux' ]]; then
         mkdir -p $HOME/.local/share/fonts
         cd $HOME/.local/share/fonts 
 	url='https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf'	
-	font_name="Droid Sans Mono for Powerline Nerd Font Complete.otf"
+	font_name="Droid Sans Mono Nerd Font Complete.otf"
         curl -fLo $font_name  $url
 	cd -
     fi
@@ -60,6 +60,9 @@ if [[ $(get_os) = 'linux' ]]; then
         cp "./font/$font_name" $HOME/.local/share/fonts
     fi
     # Configure terminal
+    terminal_profile=$(gsettings get org.gnome.Terminal.ProfilesList default | awk -F \' '{print $2}')
+    gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$terminal_profile/ use-system-font false
+    gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$terminal_profile/ font 'Droid Sans Mono Nerd Font 10'
 fi
 
 if [[ "$?" == 0 ]]; then
