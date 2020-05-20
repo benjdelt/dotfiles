@@ -58,7 +58,7 @@ The following are installed by the scripts:
 ./install -T
 ```
 
-- Droid Sans Mono Nerd Font (for Starship prompt)
+- [Droid Sans Mono Nerd Font (for Starship prompt)](https://github.com/ryanoasis/nerd-fonts)
 
 ### Deb Packages
 ```
@@ -101,7 +101,7 @@ The following are installed by the scripts:
 
 - [Solarized](https://github.com/altercation/vim-colors-solarized)
 - [seoul256](https://github.com/junegunn/seoul256.vim)
-- [jellybeans](vim jellybeans)
+- [jellybeans](https://github.com/nanotech/jellybeans.vim)
 - [PaperColor](https://github.com/NLKNguyen/papercolor-theme)
 
 #### Personal File Type Plugins
