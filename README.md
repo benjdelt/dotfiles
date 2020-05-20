@@ -1,5 +1,6 @@
-# Dotfiles A collection of my personal configuration files for: 
+# Dotfiles 
 
+A collection of my personal configuration files for: 
 - Bash 
 - Vim
 - tmux
