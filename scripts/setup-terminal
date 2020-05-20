@@ -8,8 +8,8 @@ readonly RESET_FORMAT='\033[0m'
 
 cd "$(pwd)/$BASE_DIR" || exit 1
 
-# Import system functions
 source ./scripts/colors
+# Import system functions
 source ./scripts/system.sh
 
 echo -e "${BLUE}Setting up terminal configuration...${RESET_FORMAT}"
@@ -67,7 +67,7 @@ if [[ $(get_os) = 'linux' ]]; then
 fi
 
 if [[ "$?" == 0 ]]; then
-    echo -e "${GREEN}Terminal configuration installation complete"
     echo -e "${YELLOW_BOLD}It may be necessary to relaunch the terminal for the changes to take effect ${RESET_FORMAT}"
+    echo -e "${GREEN}Terminal configuration installation complete"
 fi
 
