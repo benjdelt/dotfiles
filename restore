@@ -4,7 +4,7 @@ readonly SCRIPT_DIR=$(dirname "$0")
 
 cd "$(pwd)/$SCRIPT_DIR" || exit 1
 
-source ./scripts/colors
+source ./scripts/helpers.sh
 
 # Option List
 optlist=":aAdhTv"
@@ -24,12 +24,12 @@ OPTIND=1
 while getopts $optlist options; do
     case ${options} in
 	A) 
-	    echo -e "${BLUE}Running All restore scripts${RESET_FORMAT}"
+	    msg_info 'Running All restore scripts'
 	    ./scripts/restore-dotfiles
 	    ./scripts/restore-terminal
 	    ./scripts/restore-vim
             if [[ "$?" == 0 ]]; then
-                echo -e "${GREEN}Restoration script run successfullyr${RESET_FORMAT}"
+                msg_success 'Restoration script run successfullyr'
 	        exit 0 
             fi
 	    ;;
@@ -41,11 +41,11 @@ OPTIND=1
 while getopts $optlist options; do
     case ${options} in
 	a) 
-	    echo -e "${BLUE}Running Almost all restore scripts${RESET_FORMAT}"
+	    msg_info 'Running Almost all restore scripts'
 	    ./scripts/restore-dotfiles
 	    ./scripts/restore-vim
             if [[ "$?" == 0 ]]; then
-                echo -e "${GREEN}Restoration script run successfully${RESET_FORMAT}"
+                msg_success 'Restoration script run successfully'
 	        exit 0 
             fi
 	    ;;
@@ -56,13 +56,13 @@ OPTIND=1
 # Finally process the rest of the options
 while getopts $optlist options; do
     case ${options} in
-	d) echo -e "${BLUE}Running restore-dotfiles...${RESET_FORMAT}" 
+	d) msg_info 'Running restore-dotfiles...' 
 	./scripts/restore-dotfiles
 	;;
-        T) echo -e "${BLUE}Running restore-terminal...${RESET_FORMAT}"
+        T) msg_info 'Running restore-terminal...'
 	./scripts/restore-terminal
 	;;
-	v) echo -e "${BLUE}Running restore-vim...${RESET_FORMAT}" 
+	v) msg_info 'Running restore-vim...' 
 	./scripts/restore-vim
 	;;
 	\?) echo "Invalid option: $OPTARG" 1>&2
@@ -73,21 +73,10 @@ while getopts $optlist options; do
 done
 shift $((OPTIND -1))
 
-# Handle missing option
-if ((OPTIND == 1)); then
-    echo 'Missing option' 1>&2
-    echo "Try './install -h' for more information" 1>&2
-    exit 1
-fi
-
-# Handle invalid arguments
-if [[ "$#" > 0 ]]; then
-    echo "Unrecognized argument(s): $@" 1>&2
-    echo "Try './install -h' for more information" 1>&2
-    exit 1
-fi
+handle_missing_option OPTIND
+handle_invalid_arg "$#" "$@"
 
 if [[ "$?" == 0 ]]; then
-    echo -e "${GREEN}Restoration script run successfully${RESET_FORMAT}"
+    msg_success 'Restoration script run successfully'
 fi
 

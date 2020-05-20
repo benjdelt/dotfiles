@@ -4,7 +4,7 @@ readonly SCRIPT_DIR=$(dirname "$0")
 
 cd "$(pwd)/$SCRIPT_DIR" || exit 1
 
-source ./scripts/colors
+source ./scripts/helpers.sh
 
 # Option list
 optlist=":aAdhptTv"
@@ -24,14 +24,14 @@ OPTIND=1
 while getopts $optlist options; do
     case ${options} in
 	A) 
-	    echo -e "${BLUE}Running All install scripts...${RESET_FORMAT}"
+	    msg_info 'Running All install scripts...'
 	    ./scripts/setup-terminal
 	    ./scripts/install-deb-packages
 	    ./scripts/install-cli-tools
 	    ./scripts/install-dotfiles
 	    ./scripts/setup-vim
             if [[ "$?" == 0 ]]; then
-                echo -e "${GREEN}Installation script run successfully${RESET_FORMAT}"
+                msg_success 'Installation script run successfully'
 	        exit 0 
             fi
 	    ;;
@@ -43,12 +43,12 @@ OPTIND=1
 while getopts $optlist options; do
     case ${options} in
         a) 
-	    echo -e "${BLUE}Running all install scripts except install-deb-packages...${RESET_FORMAT}"
+	    msg_info 'Running all install scripts except install-deb-packages...'
 	    ./scripts/install-cli-tools
 	    ./scripts/install-dotfiles
 	    ./scripts/setup-vim
             if [[ "$?" == 0 ]]; then
-                echo -e "${GREEN}Installation script run successfully${RESET_FORMAT}"
+                msg_success 'Installation script run successfully'
 	        exit 0 
             fi
 	    ;;
@@ -59,19 +59,19 @@ OPTIND=1
 # Finally process the rest of the options
 while getopts $optlist options; do
     case ${options} in
-	d) echo -e "${BLUE}Running install-dotfiles...${RESET_FORMAT}" 
+	d) msg_info 'Running install-dotfiles...' 
 	./scripts/install-dotfiles
 	;;
-	p) echo -e "${BLUE}Running install-deb-packages${RESET_FORMAT}" 
+	p) msg_info 'Running install-deb-packages' 
 	./scripts/install-deb-packages
 	;;
-	t) echo -e "${BLUE}Running install-cli-tools${RESET_FORMAT}" 
+	t) msg_info 'Running install-cli-tools' 
 	./scripts/install-cli-tools
 	;;
-        T) echo -e "${BLUE}Running setup-terminal${RESET_FORMAT}"
+        T) msg_info 'Running setup-terminal'
 	./scripts/setup-terminal
 	;;
-	v) echo -e "${BLUE}Running setup-vim...${RESET_FORMAT}" 
+	v) msg_info 'Running setup-vim...' 
 	./scripts/setup-vim
 	;;
 	\?) echo "Invalid option: $OPTARG" 1>&2
@@ -82,21 +82,10 @@ while getopts $optlist options; do
 done
 shift $((OPTIND -1))
 
-# Handle missing option
-if ((OPTIND == 1)); then
-    echo 'Missing option' 1>&2
-    echo "Try './scripts/install -h' for more information" 1>&2
-    exit 1
-fi
-
-# Handle invalid arguments
-if [[ "$#" > 0 ]]; then
-    echo "Unrecognized argument(s): $@" 1>&2
-    echo "Try './scripts/install -h' for more information" 1>&2
-    exit 1
-fi
+handle_missing_option OPTIND
+handle_invalid_arg "$#" "$@"
 
 if [[ "$?" == 0 ]]; then
-    echo -e "${GREEN}Installation script run successfully${RESET_FORMAT}"
+    msg_info 'Installation script run successfully'
 fi
 
