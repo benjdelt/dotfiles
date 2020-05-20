@@ -32,9 +32,7 @@ remove_existing_dir () {
 echo -e "${BLUE}Backing up and creating links to dotfiles...${RESET_FORMAT}"
 
 # Create the backup directory if it doesn't exist
-if [[ ! -d "$BACKUP_DIR" ]]; then
-    mkdir -pv "$BACKUP_DIR"
-fi
+mkdir -pv "$BACKUP_DIR"
 
 # Backup dotfiles in the HOME directory and link dotfiles into it
 for f in ./dotfiles/.[^.]*; do
