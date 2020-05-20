@@ -1,6 +1,9 @@
-# Dotfiles A collection of my personal configuration files for: - Bash - Vim
+# Dotfiles A collection of my personal configuration files for: 
+
+- Bash 
+- Vim
 - tmux
-- Starship prompt
+- [Starship prompt](https://starship.rs/)
 
 The repo also includes scripts to setup a machine: installing different
 programming languages and tools. [See the full list of  
@@ -12,7 +15,6 @@ The scripts assume that the following are already installed:
 - cURL
 - Git
 - Vim >= 8
-- Firacode Nerd Font Mono (for Starship prompt)
 
 ## Installation
 
@@ -51,10 +53,16 @@ For a list of available options, run the restore script with the help option:
 The following are installed by the scripts:
 
 ### Terminal
+```
+./install -T
+```
 
 - Droid Sans Mono Nerd Font (for Starship prompt)
 
 ### Deb Packages
+```
+./install -p
+```
 
 - Python3
 - pip
@@ -65,26 +73,40 @@ The following are installed by the scripts:
 - Ruby
 
 ### Command Line Tools
+```
+./install -t
+```
 
-- Starship prompt
-- tldr pages
+- [Starship prompt](https://starship.rs/)
+- [tldr pages](https://tldr.sh/)
+
 
 ### Vim
 
 #### Plugins
+```
+./install -d
+```
 
-- ctrlp
-- fugitive
-- ALE (Asynchronous Lint Engine)
+- [Vim Plug](https://github.com/junegunn/vim-plug)
+- [ctrlp](https://github.com/kien/ctrlp.vim)
+- [fugitive](https://github.com/tpope/vim-fugitive)
+- [ALE (Asynchronous Lint Engine)](https://github.com/dense-analysis/ale)
 
 #### Color Schemes
+```
+./install -d
+```
 
-- Solarized
-- seoul256
-- jellybeans
-- PaperColor
+- [Solarized](https://github.com/altercation/vim-colors-solarized)
+- [seoul256](https://github.com/junegunn/seoul256.vim)
+- [jellybeans](vim jellybeans)
+- [PaperColor](https://github.com/NLKNguyen/papercolor-theme)
 
 #### Personal File Type Plugins
+```
+./install -v
+```
 
 - Javascript
 - Markdown
