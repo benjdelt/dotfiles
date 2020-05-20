@@ -4,7 +4,9 @@ readonly BASE_DIR=$(dirname "$0")/..
 
 cd "$(pwd)/$BASE_DIR"
 
-echo 'Installing deb packages...'
+source ./scripts/colors
+
+echo -e "${BLUE}Installing deb packages... ${RESET_FORMAT}"
 
 # Update and upgrade package manager
 sudo apt update
@@ -49,5 +51,5 @@ if ! ruby -v ; then
 fi
 
 if [[ "$?" == 0 ]]; then
-    echo 'Deb packages installation complete'
+    echo -e "${GREEN}Deb packages installation complete ${RESET_FORMAT}"
 fi

@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+readonly BOLD='\033[1m'
+readonly RED='\033[1;31m'
+readonly RED_BOLD='\033[1;91m'
+readonly GREEN='\033[1;32m'
+readonly GREEN_BOLD='\033[1;92m'
+readonly BLUE='\033[1;34m'
+readonly BLUE_BOLD='\033[1;94m'
+readonly YELLOW='\033[1;33m'
+readonly YELLOW_BOLD='\033[1;93m'
+readonly RESET_FORMAT='\033[0m'
+
+test_colors () {
+    cat ./text/wsl-font.txt
+    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "${RESET_FORMAT}"
+    
+    echo -e "${BOLD}"
+    cat ./text/wsl-font.txt
+    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "${RESET_FORMAT}"
+    
+    echo -e "${RED}"
+    cat ./text/wsl-font.txt
+    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "${RESET_FORMAT}"
+    
+    echo -e "${RED_BOLD}"
+    cat ./text/wsl-font.txt
+    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "${RESET_FORMAT}"
+    
+    echo -e "${GREEN}"
+    cat ./text/wsl-font.txt
+    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "${RESET_FORMAT}"
+    
+    echo -e "${GREEN_BOLD}"
+    cat ./text/wsl-font.txt
+    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "${RESET_FORMAT}"
+    
+    echo -e "${BLUE}"
+    cat ./text/wsl-font.txt
+    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "${RESET_FORMAT}"
+    
+    echo -e "${BLUE_BOLD}"
+    cat ./text/wsl-font.txt
+    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "${RESET_FORMAT}"
+    
+    echo -e "${YELLOW}"
+    cat ./text/wsl-font.txt
+    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "${RESET_FORMAT}"
+    
+    echo -e "${YELLOW_BOLD}"
+    cat ./text/wsl-font.txt
+    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "${RESET_FORMAT}"
+    
+    cat ./text/wsl-font.txt
+    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "${RESET_FORMAT}"
+}    

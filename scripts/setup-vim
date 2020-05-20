@@ -3,9 +3,11 @@
 readonly BACKUP_DIR=~/dotfiles/backup/vim/
 readonly BASE_DIR=$(dirname "$0")/..
 
-echo 'Seting up Vim configuration'
-
 cd "$(pwd)/$BASE_DIR" || exit 1
+
+source ./scripts/colors
+
+echo -e "${BLUE}Seting up Vim configuration ${RESET_FORMAT}"
 
 # Create the undodir directory if it doesn't exist
 if [[ ! -d "$HOME/.vim/undodir/" ]]; then
@@ -35,6 +37,6 @@ for f in ./vim/ftplugin/*.vim; do
 done
 
 if [[ "$?" == 0 ]]; then
-    echo 'Vim setup complete'
+    echo -e "${GREEN}Vim setup complete ${RESET_FORMAT}"
 fi
 

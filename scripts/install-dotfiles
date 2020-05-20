@@ -4,6 +4,10 @@ readonly BACKUP_DIR=$HOME/dotfiles/backup/dotfiles/
 readonly IGNORE=(.git .gitignore .swp$)
 readonly BASE_DIR=$(dirname "$0")/..
 
+cd "$(pwd)/$BASE_DIR" || exit 1
+
+source ./scripts/colors
+
 # Check if a fil is in the IGNORE list
 in_ignore () {
     for i in "${IGNORE[@]}"; do
@@ -25,9 +29,7 @@ remove_existing_dir () {
     fi
 }
         
-cd "$(pwd)/$BASE_DIR" || exit 1
-
-echo 'Backing up and creating links to dotfiles...'
+echo -e "${BLUE}Backing up and creating links to dotfiles...${RESET_FORMAT}"
 
 # Create the backup directory if it doesn't exist
 if [[ ! -d "$BACKUP_DIR" ]]; then
@@ -49,6 +51,6 @@ for f in ./dotfiles/.[^.]*; do
 done
 
 if [[ "$?" == 0 ]]; then
-    echo 'Dotfiles installation complete'
+    echo -e "${GREEN}Dotfiles installation complete ${RESET_FORMAT}"
 fi
 
