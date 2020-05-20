@@ -4,7 +4,8 @@ readonly SCRIPT_DIR=$(dirname "$0")
 
 cd "$(pwd)/$SCRIPT_DIR" || exit 1
 
-optlist=":adhv"
+# Option List
+optlist=":aAdhTv"
 
 # Process help first
 while getopts $optlist options; do
@@ -20,8 +21,25 @@ OPTIND=1
 # Process the run All scripts option in priority
 while getopts $optlist options; do
     case ${options} in
-	a) 
+	A) 
 	    echo 'Running All restore scripts'
+	    ./scripts/restore-dotfiles
+	    ./scripts/restore-terminal
+	    ./scripts/restore-vim
+            if [[ "$?" == 0 ]]; then
+                echo 'Restoration script run successfully'
+	        exit 0 
+            fi
+	    ;;
+    esac
+done
+OPTIND=1
+
+# Then process the run almost all scripts option
+while getopts $optlist options; do
+    case ${options} in
+	a) 
+	    echo 'Running Almost all restore scripts'
 	    ./scripts/restore-dotfiles
 	    ./scripts/restore-vim
             if [[ "$?" == 0 ]]; then
@@ -38,6 +56,9 @@ while getopts $optlist options; do
     case ${options} in
 	d) echo 'Running restore-dotfiles...' 
 	./scripts/restore-dotfiles
+	;;
+        T) echo 'Running restore-terminal...'
+	./scripts/restore-terminal
 	;;
 	v) echo 'Running restore-vim...' 
 	./scripts/restore-vim

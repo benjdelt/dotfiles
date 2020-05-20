@@ -2,9 +2,12 @@ Usage: restore [OPTION]...
 Run scripts to restore backups made by install scripts. Note that not all
 install scripts perform backups
 
-  -a           run all the scripts (equivalent to -dv)
+  -a           run all the scripts except for setup-terminal (equivalent to -dv)
+  -A           run all the scripts (equivalent to -dTv)
   -d           restore the backup made by the install-dotfiles script
   -h           display this help and exit
+  -T	       restore the default configuration for the Gnome terminal on
+               native debian distributions and wsltty on WSL
   -v           restore the backup made by the setup-vim script
 
 To find out which scripts perform backups, run './install -h' or see the 

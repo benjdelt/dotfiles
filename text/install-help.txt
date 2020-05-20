@@ -3,8 +3,9 @@ Run scripts to install and setup command line environment. It includes
 programming languages, packages managers, dotfiles, command line tools, and Vim
 plugins.
 
-  -a           run all the scripts except for deb-packages (equivalent to -dtv)
-  -A           run all the scripts (equivalent to -dptv)
+  -a           run all the scripts except for deb-packages and setup-terminal
+               (equivalent to -dtv)
+  -A           run all the scripts (equivalent to -dptTv)
   -d           run the script to link the including dotfiles to
                the HOME directory (./install-dotfiles); create a
                backup of the overwritten files
@@ -14,6 +15,8 @@ plugins.
                managers (./install-deb-packages)
   -t           run the script to install command line tools
                (./install-cli-tools)
+  -T           Setup the configuration for the Gnome terminal on native debian
+               distributions, or wsltty on WSL
   -v           adds personal files to the Vim configuration
                (./setup-vim); create a backup of the overwritten
                files

@@ -4,7 +4,8 @@ readonly SCRIPT_DIR=$(dirname "$0")
 
 cd "$(pwd)/$SCRIPT_DIR" || exit 1
 
-optlist=":aAdhptv"
+# Option list
+optlist=":aAdhptTv"
 
 # Process help first
 while getopts $optlist options; do
@@ -22,6 +23,7 @@ while getopts $optlist options; do
     case ${options} in
 	A) 
 	    echo 'Running All install scripts...'
+	    ./scripts/setup-terminal
 	    ./scripts/install-deb-packages
 	    ./scripts/install-cli-tools
 	    ./scripts/install-dotfiles
@@ -63,6 +65,9 @@ while getopts $optlist options; do
 	;;
 	t) echo 'Running install-cli-tools' 
 	./scripts/install-cli-tools
+	;;
+        T) echo 'Running setup-terminal'
+	./scripts/setup-terminal
 	;;
 	v) echo 'Running setup-vim...' 
 	./scripts/setup-vim
