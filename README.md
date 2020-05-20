@@ -1,8 +1,4 @@
-# Dotfiles
-
-A collection of my personal configuration files for:
-- Bash
-- Vim
+# Dotfiles A collection of my personal configuration files for: - Bash - Vim
 - tmux
 - Starship prompt
 
@@ -53,6 +49,10 @@ For a list of available options, run the restore script with the help option:
 ## Installed Packages, Tools and Plugins
 
 The following are installed by the scripts:
+
+### Terminal
+
+- Droid Sans Mono Nerd Font (for Starship prompt)
 
 ### Deb Packages
 
