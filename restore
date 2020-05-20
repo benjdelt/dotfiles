@@ -4,6 +4,8 @@ readonly SCRIPT_DIR=$(dirname "$0")
 
 cd "$(pwd)/$SCRIPT_DIR" || exit 1
 
+source ./scripts/colors
+
 # Option List
 optlist=":aAdhTv"
 
@@ -22,12 +24,12 @@ OPTIND=1
 while getopts $optlist options; do
     case ${options} in
 	A) 
-	    echo 'Running All restore scripts'
+	    echo -e "${BLUE}Running All restore scripts${RESET_FORMAT}"
 	    ./scripts/restore-dotfiles
 	    ./scripts/restore-terminal
 	    ./scripts/restore-vim
             if [[ "$?" == 0 ]]; then
-                echo 'Restoration script run successfully'
+                echo -e "${GREEN}Restoration script run successfullyr${RESET_FORMAT}"
 	        exit 0 
             fi
 	    ;;
@@ -39,11 +41,11 @@ OPTIND=1
 while getopts $optlist options; do
     case ${options} in
 	a) 
-	    echo 'Running Almost all restore scripts'
+	    echo -e "${BLUE}Running Almost all restore scripts${RESET_FORMAT}"
 	    ./scripts/restore-dotfiles
 	    ./scripts/restore-vim
             if [[ "$?" == 0 ]]; then
-                echo 'Restoration script run successfully'
+                echo -e "${GREEN}Restoration script run successfully${RESET_FORMAT}"
 	        exit 0 
             fi
 	    ;;
@@ -54,13 +56,13 @@ OPTIND=1
 # Finally process the rest of the options
 while getopts $optlist options; do
     case ${options} in
-	d) echo 'Running restore-dotfiles...' 
+	d) echo -e "${BLUE}Running restore-dotfiles...${RESET_FORMAT}" 
 	./scripts/restore-dotfiles
 	;;
-        T) echo 'Running restore-terminal...'
+        T) echo -e "${BLUE}Running restore-terminal...${RESET_FORMAT}"
 	./scripts/restore-terminal
 	;;
-	v) echo 'Running restore-vim...' 
+	v) echo -e "${BLUE}Running restore-vim...${RESET_FORMAT}" 
 	./scripts/restore-vim
 	;;
 	\?) echo "Invalid option: $OPTARG" 1>&2
@@ -86,6 +88,6 @@ if [[ "$#" > 0 ]]; then
 fi
 
 if [[ "$?" == 0 ]]; then
-    echo 'Restoration script run successfully'
+    echo -e "${GREEN}Restoration script run successfully${RESET_FORMAT}"
 fi
 

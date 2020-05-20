@@ -4,6 +4,8 @@ readonly SCRIPT_DIR=$(dirname "$0")
 
 cd "$(pwd)/$SCRIPT_DIR" || exit 1
 
+source ./scripts/colors
+
 # Option list
 optlist=":aAdhptTv"
 
@@ -22,14 +24,14 @@ OPTIND=1
 while getopts $optlist options; do
     case ${options} in
 	A) 
-	    echo 'Running All install scripts...'
+	    echo -e "${BLUE}Running All install scripts...${RESET_FORMAT}"
 	    ./scripts/setup-terminal
 	    ./scripts/install-deb-packages
 	    ./scripts/install-cli-tools
 	    ./scripts/install-dotfiles
 	    ./scripts/setup-vim
             if [[ "$?" == 0 ]]; then
-                echo 'Installation script run successfully'
+                echo -e "${GREEN}Installation script run successfully${RESET_FORMAT}"
 	        exit 0 
             fi
 	    ;;
@@ -41,12 +43,12 @@ OPTIND=1
 while getopts $optlist options; do
     case ${options} in
         a) 
-	    echo 'Running all install scripts except install-deb-packages...'
+	    echo -e "${BLUE}Running all install scripts except install-deb-packages...${RESET_FORMAT}"
 	    ./scripts/install-cli-tools
 	    ./scripts/install-dotfiles
 	    ./scripts/setup-vim
             if [[ "$?" == 0 ]]; then
-                echo 'Installation script run successfully'
+                echo -e "${GREEN}Installation script run successfully${RESET_FORMAT}"
 	        exit 0 
             fi
 	    ;;
@@ -57,19 +59,19 @@ OPTIND=1
 # Finally process the rest of the options
 while getopts $optlist options; do
     case ${options} in
-	d) echo 'Running install-dotfiles...' 
+	d) echo -e "${BLUE}Running install-dotfiles...${RESET_FORMAT}" 
 	./scripts/install-dotfiles
 	;;
-	p) echo 'Running install-deb-packages' 
+	p) echo -e "${BLUE}Running install-deb-packages${RESET_FORMAT}" 
 	./scripts/install-deb-packages
 	;;
-	t) echo 'Running install-cli-tools' 
+	t) echo -e "${BLUE}Running install-cli-tools${RESET_FORMAT}" 
 	./scripts/install-cli-tools
 	;;
-        T) echo 'Running setup-terminal'
+        T) echo -e "${BLUE}Running setup-terminal${RESET_FORMAT}"
 	./scripts/setup-terminal
 	;;
-	v) echo 'Running setup-vim...' 
+	v) echo -e "${BLUE}Running setup-vim...${RESET_FORMAT}" 
 	./scripts/setup-vim
 	;;
 	\?) echo "Invalid option: $OPTARG" 1>&2
@@ -95,6 +97,6 @@ if [[ "$#" > 0 ]]; then
 fi
 
 if [[ "$?" == 0 ]]; then
-    echo 'Installation script run successfully'
+    echo -e "${GREEN}Installation script run successfully${RESET_FORMAT}"
 fi
 
