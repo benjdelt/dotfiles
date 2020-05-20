@@ -43,7 +43,9 @@ for f in ./dotfiles/.[^.]*; do
     in_ignore "$(basename "$f")"
     if [[ "$?" -ne 0 ]]; then
 	# Backup file
-        rsync -rv --no-links "$HOME/$basename" "$BACKUP_DIR"
+	if [[ -f "$HOME/$basename" ]]; then
+            rsync -rv --no-links "$HOME/$basename" "$BACKUP_DIR"
+	fi
 	remove_existing_dir "$f"
 	# Link to dotfile
 	ln -svf "$(pwd)/dotfiles/$basename" "$HOME"

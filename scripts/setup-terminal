@@ -36,7 +36,9 @@ if [[ $(get_os) = 'wsl' ]]; then
     user_path=$(find /mnt/c/Users/ -maxdepth 1 -type d -iname $USER_STRING)
     config_path=$user_path/AppData/Roaming/wsltty
     # Backup file
-    rsync -rv --no-links --ignore-existing $config_path/config "$BACKUP_DIR/wsltty/"
+    if [[ -f $config_path/config ]]; then
+        rsync -rv --no-links --ignore-existing $config_path/config "$BACKUP_DIR/wsltty/"
+    fi
     # Linux symlinks don't work in Windows, the file must be copied
     cp -fv "$(pwd)/terminal/wsltty/config" $config_path/
 fi

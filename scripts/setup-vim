@@ -24,16 +24,15 @@ if [[ ! -d "$BACKUP_DIR/ftplugin/" ]]; then
     mkdir -pv "$BACKUP_DIR/ftplugin"
 fi
 
-# Backup existing ftplugin files into the backup directory
-for f in $HOME/.vim/after/ftplugin/*.vim; do
-    rsync -v --no-links --ignore-existing $f "$BACKUP_DIR/ftplugin/"
-done
-
 # Link ftplugin files from dotfiles to the .vim directory
-shopt -s nullglob
+shopt -s nullglob # Avoid to grab hardcoded * if directory is empty
 for f in ./vim/ftplugin/*.vim; do
     basename=$(basename "$f")
     ln -svf "$(pwd)/vim/ftplugin/$basename" "$HOME/.vim/after/ftplugin/"
+    # Backup existing ftplugin file into the backup directory
+    if [[ -f "$HOME/.vim/after/ftplugin/$basename" ]]; then
+	rsync -v --no-links --ignore-existing "$HOME/.vim/after/ftplugin/$basename" "$BACKUP_DIR/ftplugin/"
+    fi
 done
 
 if [[ "$?" == 0 ]]; then
