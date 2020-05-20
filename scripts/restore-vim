@@ -1,26 +1,28 @@
 #!/usr/bin/env bash
 
-readonly BACKUP_DIR=~/dotfiles/backup/vim
+readonly BACKUP_DIR=$HOME/dotfiles/backup/vim
 readonly BASE_DIR=$(dirname "$0")/..
-
-# Exit if there is no backup directory
-if [[ ! -d $BACKUP_DIR ]]; then
-    echo 'No backup found' >/dev/stderr
-    exit 1
-fi
 
 cd "$(pwd)/$BASE_DIR" || exit 1
 
+source ./scripts/colors
+
+# Exit if there is no backup directory
+if [[ ! -d $BACKUP_DIR ]]; then
+    echo -e "${RED_BOLD}No backup found${RESET_FORMAT}" >/dev/stderr
+    exit 1
+fi
+
 # Restore ftplugin files
-echo 'Removing links...'
+echo -e "${BLUE}Removing links...${RESET_FORMAT}"
 
 find "$HOME/.vim/after/ftplugin" -lname "$(pwd)/vim/ftplugin/*" -print -delete 
 
-echo 'Restoring from backup...'
+echo -e "${BLUE}Restoring from backup...${RESET_FORMAT}"
 
 cp -frv $BACKUP_DIR/ftplugin/*.vim $HOME/.vim/after/ftplugin/
 
 if [[ "$?" == 0 ]]; then
-    echo 'Vim restauration complete'
+    echo -e "${GREEN}Vim restauration complete${RESET_FORMAT}"
 fi
 

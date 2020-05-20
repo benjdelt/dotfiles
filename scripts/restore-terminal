@@ -6,8 +6,11 @@ readonly USER_STRING='ben*'
 
 cd "$(pwd)/$BASE_DIR" || exit 1
 
+source ./scripts/colors
 # Import system functions
 source ./scripts/system.sh
+
+echo -e "${BLUE}Setting up terminal configuration...${RESET_FORMAT}"
 
 # Restore backup configuration file for WSL
 if [[ $(get_os) = 'wsl' ]]; then
@@ -26,6 +29,6 @@ if [[ $(get_os) = 'linux' ]]; then
 fi
 
 if [[ "$?" == 0 ]]; then
-    echo 'Terminal configuration restoration complete'
+    echo -e "${GREEN}Terminal configuration restoration complete${RESET_FORMAT}"
 fi
 
