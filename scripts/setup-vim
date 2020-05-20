@@ -24,7 +24,7 @@ fi
 
 # Backup existing ftplugin files into the backup directory
 for f in $HOME/.vim/after/ftplugin/*.vim; do
-    rsync -v --no-links $f "$BACKUP_DIR/ftplugin/"
+    rsync -v --no-links --ignore-existing $f "$BACKUP_DIR/ftplugin/"
 done
 
 # Link ftplugin files from dotfiles to the .vim directory
