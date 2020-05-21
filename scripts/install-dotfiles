@@ -24,9 +24,15 @@ msg_info 'Backing up and creating links to dotfiles...'
 # Create the backup directory if it doesn't exist
 mkdir -pv "$BACKUP_DIR"
 
+vimrc=false
+
 # Backup dotfiles in the HOME directory and link dotfiles into it
 for f in ./dotfiles/.[^.]*; do
     basename=$(basename "$f")
+    # Check if .vimrc is used
+    if [[ $basename == '.vimrc' ]]; then
+	vimrc=true
+    fi
     # Check if the file is in the IGNORE list
     in_ignore "$(basename "$f")"
     if [[ "$?" -ne 0 ]]; then
@@ -39,6 +45,12 @@ for f in ./dotfiles/.[^.]*; do
 	make_link "$(pwd)/dotfiles/$basename" "$HOME"
     fi
 done
+
+# If .vimrc is used, launch Vim, install plugins and quit
+if [[ $vimrc ]]; then
+    msg_info 'Installing Vim plugins...'
+    vim +'PlugInstall --sync' +qa
+fi
 
 if [[ "$?" == 0 ]]; then
     msg_success 'Dotfiles installation complete'
