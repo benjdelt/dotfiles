@@ -32,11 +32,6 @@ When applicable, the scripts make a backup of the existing targeted files
 before creating symlinks to the dotfiles of the repo.
 Note that the install scripts can safely be run multiple times.
 
-Running Vim for the first time installs the plugins:
-```
-vim
-```
-
 ## Restore Initial State
 
 - To restore the backup made during installation, run the install script with 
