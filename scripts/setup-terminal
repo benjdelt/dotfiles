@@ -3,8 +3,6 @@
 readonly BACKUP_DIR=$HOME/dotfiles/backup/terminal
 readonly BASE_DIR=$(dirname "$0")/..
 readonly USER_STRING='ben*'
-readonly RED_BOLD='\033[1;91m'
-readonly RESET_FORMAT='\033[0m'
 
 cd "$(pwd)/$BASE_DIR" || exit 1
 
