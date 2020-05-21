@@ -13,6 +13,10 @@ msg_info 'Installing deb packages...'
 sudo apt update
 sudo apt upgrade
 
+# Install cURL if necessary
+if ! curl -V ; then
+    sudo apt install curl
+fi
 # Install Python
 if ! python3 -V ; then
     sudo apt install python3

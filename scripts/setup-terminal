@@ -15,6 +15,11 @@ msg_info 'Setting up terminal configuration...'
 # Create the backup directory if it doesn't exist
 mkdir -pv "$BACKUP_DIR"
 
+# Install cURL if necessary
+if ! curl -V ; then
+    sudo apt install curl
+fi
+
 # Backup and link terminal configuration file for WSL
 if [[ $(get_os) = 'wsl' ]]; then
     # Check if the font is installed

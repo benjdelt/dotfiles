@@ -13,7 +13,6 @@ installed packages, tools and plugins](#installed-packages-tools-and-plugins).
 ## Requirements
 
 The scripts assume that the following are already installed:
-- cURL
 - Git
 - Vim >= 8
 
