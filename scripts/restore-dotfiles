@@ -3,25 +3,26 @@
 readonly BACKUP_DIR=$HOME/dotfiles/backup/dotfiles/
 readonly BASE_DIR=$(dirname "$0")/..
 
-cd $(pwd)/$BASE_DIR
+cd "$(pwd)/$BASE_DIR" || exit 1
 
-source ./scripts/colors
+# shellcheck source=./helpers.sh
+source ./scripts/helpers.sh
 
-echo -e "${BLUE}Removing links...${RESET_FORMAT}"
+msg_info 'Removing links...'
 
 # Exit if there is no backup directory
 if [[ ! -d $BACKUP_DIR ]]; then
-    echo -e "${RED_BOLD}No backup found${RESET_FORMAT}" >/dev/stderr
+    msg_alert 'No backup found' >/dev/stderr
     exit 1
 fi
 
-find $HOME -lname "$(pwd)/dotfiles/.*" -print -delete 
+find "$HOME" -lname "$(pwd)/dotfiles/.*" -print -delete 
 
-echo -e "${BLUE}Restoring from backup...${RESET_FORMAT}"
+msg_info 'Restoring from backup...'
 
-cp -rv $BACKUP_DIR.[^.]* $HOME 
+cp -frv "$BACKUP_DIR".[^.]* "$HOME" 
 
 if [[ "$?" == 0 ]]; then
-    echo -e "${GREEN}Dotfiles restauration complete${RESET_FORMAT}"
+    msg_success 'Dotfiles restauration complete'
 fi
 

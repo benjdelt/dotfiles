@@ -6,15 +6,16 @@ readonly USER_STRING='ben*'
 
 cd "$(pwd)/$BASE_DIR" || exit 1
 
-source ./scripts/colors
-# Import system functions
+# shellcheck source=./helpers.sh
+source ./scripts/helpers.sh
+# shellcheck source=./system.sh
 source ./scripts/system.sh
 
-echo -e "${BLUE}Setting up terminal configuration...${RESET_FORMAT}"
+msg_info 'Setting up terminal configuration...'
 
 # Restore backup configuration file for WSL
 if [[ $(get_os) = 'wsl' ]]; then
-    user_path=$(find /mnt/c/Users/ -maxdepth 1 -type d -iname $USER_STRING)
+    user_path=$(find /mnt/c/Users/ -maxdepth 1 -type d -iname "$USER_STRING")
     config_path=$user_path/AppData/Roaming/wsltty
     # Restore backup config file
     cp -fv "$BACKUP_DIR/wsltty/config" "$config_path/"
@@ -24,11 +25,11 @@ fi
 if [[ $(get_os) = 'linux' ]]; then
     # Restore default terminal configuration
     terminal_profile=$(gsettings get org.gnome.Terminal.ProfilesList default | awk -F \' '{print $2}')
-    gsettings reset org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$terminal_profile/ use-system-font
-    gsettings reset org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$terminal_profile/ font
+    gsettings reset org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:"$terminal_profile"/ use-system-font
+    gsettings reset org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:"$terminal_profile"/ font
 fi
 
 if [[ "$?" == 0 ]]; then
-    echo -e "${GREEN}Terminal configuration restoration complete${RESET_FORMAT}"
+    msg_success 'Terminal configuration restoration complete'
 fi
 

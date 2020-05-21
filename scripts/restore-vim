@@ -5,24 +5,25 @@ readonly BASE_DIR=$(dirname "$0")/..
 
 cd "$(pwd)/$BASE_DIR" || exit 1
 
-source ./scripts/colors
+# shellcheck source=./helpers.sh
+source ./scripts/helpers.sh
 
 # Exit if there is no backup directory
 if [[ ! -d $BACKUP_DIR ]]; then
-    echo -e "${RED_BOLD}No backup found${RESET_FORMAT}" >/dev/stderr
+    msg_alert 'No backup found' >/dev/stderr
     exit 1
 fi
 
 # Restore ftplugin files
-echo -e "${BLUE}Removing links...${RESET_FORMAT}"
+msg_info 'Removing links...'
 
 find "$HOME/.vim/after/ftplugin" -lname "$(pwd)/vim/ftplugin/*" -print -delete 
 
-echo -e "${BLUE}Restoring from backup...${RESET_FORMAT}"
+msg_info 'Restoring from backup...'
 
-cp -frv $BACKUP_DIR/ftplugin/*.vim $HOME/.vim/after/ftplugin/
+cp -frv "$BACKUP_DIR"/ftplugin/*.vim "$HOME/.vim/after/ftplugin/"
 
 if [[ "$?" == 0 ]]; then
-    echo -e "${GREEN}Vim restauration complete${RESET_FORMAT}"
+    msg_success 'Vim restauration complete'
 fi
 

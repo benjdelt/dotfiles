@@ -5,37 +5,31 @@ readonly BASE_DIR=$(dirname "$0")/..
 
 cd "$(pwd)/$BASE_DIR" || exit 1
 
-source ./scripts/colors
+source ./scripts/helpers.sh
 
-echo -e "${BLUE}Seting up Vim configuration ${RESET_FORMAT}"
+msg_info 'Seting up Vim configuration'
 
 # Create the undodir directory if it doesn't exist
-if [[ ! -d "$HOME/.vim/undodir/" ]]; then
-    mkdir -pv "$HOME/.vim/undodir/"
-fi
+mkdir -pv "$HOME/.vim/undodir/"
 
 # Create the ftplugin directry if it doesn't exist
-if [[ ! -d "$HOME/.vim/after/ftplugin/" ]]; then
-    mkdir -pv "$HOME/.vim/after/ftplugin/"
-fi
+mkdir -pv "$HOME/.vim/after/ftplugin/"
 
 # Create a ftplugin directory in the backup directory if it doesn't exist
-if [[ ! -d "$BACKUP_DIR/ftplugin/" ]]; then
-    mkdir -pv "$BACKUP_DIR/ftplugin"
-fi
+mkdir -pv "$BACKUP_DIR/ftplugin"
 
 # Link ftplugin files from dotfiles to the .vim directory
 shopt -s nullglob # Avoid to grab hardcoded * if directory is empty
 for f in ./vim/ftplugin/*.vim; do
     basename=$(basename "$f")
-    ln -svf "$(pwd)/vim/ftplugin/$basename" "$HOME/.vim/after/ftplugin/"
     # Backup existing ftplugin file into the backup directory
     if [[ -f "$HOME/.vim/after/ftplugin/$basename" ]]; then
-	rsync -v --no-links --ignore-existing "$HOME/.vim/after/ftplugin/$basename" "$BACKUP_DIR/ftplugin/"
+	backup_file "$HOME/.vim/after/ftplugin/$basename" "$BACKUP_DIR/ftplugin/"
     fi
+    make_link "$(pwd)/vim/ftplugin/$basename" "$HOME/.vim/after/ftplugin/"
 done
 
 if [[ "$?" == 0 ]]; then
-    echo -e "${GREEN}Vim setup complete ${RESET_FORMAT}"
+    msg_success 'Vim setup complete'
 fi
 

@@ -6,7 +6,8 @@ readonly BASE_DIR=$(dirname "$0")/..
 
 cd "$(pwd)/$BASE_DIR" || exit 1
 
-source ./scripts/colors
+# shellcheck source=./helpers.sh
+source ./scripts/helpers.sh
 
 # Check if a fil is in the IGNORE list
 in_ignore () {
@@ -18,18 +19,7 @@ in_ignore () {
     return 1
 }
 
-# Remove existing directory to make way for the link
-remove_existing_dir () {
-    local basename
-    basename=$(basename "$1")
-    local target_dir=$HOME/$basename
-    if [[ -d $1 && -d $target_dir ]]; then
-	echo "target $target_dir"
-	rm -rf "$target_dir"
-    fi
-}
-        
-echo -e "${BLUE}Backing up and creating links to dotfiles...${RESET_FORMAT}"
+msg_info 'Backing up and creating links to dotfiles...'
 
 # Create the backup directory if it doesn't exist
 mkdir -pv "$BACKUP_DIR"
@@ -42,15 +32,15 @@ for f in ./dotfiles/.[^.]*; do
     if [[ "$?" -ne 0 ]]; then
 	# Backup file
 	if [[ -f "$HOME/$basename" ]]; then
-            rsync -rv --no-links "$HOME/$basename" "$BACKUP_DIR"
+	    backup_file "$HOME/$basename" "$BACKUP_DIR"
 	fi
 	remove_existing_dir "$f"
 	# Link to dotfile
-	ln -svf "$(pwd)/dotfiles/$basename" "$HOME"
+	make_link "$(pwd)/dotfiles/$basename" "$HOME"
     fi
 done
 
 if [[ "$?" == 0 ]]; then
-    echo -e "${GREEN}Dotfiles installation complete ${RESET_FORMAT}"
+    msg_success 'Dotfiles installation complete'
 fi
 

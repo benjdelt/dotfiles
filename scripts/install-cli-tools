@@ -4,9 +4,10 @@ readonly BASE_DIR=$(dirname "$0")/..
 
 cd "$(pwd)/$BASE_DIR" || exit 1
 
-source ./scripts/colors
+# shellcheck source=./helpers.sh
+source ./scripts/helpers.sh
 
-echo -e "${BLUE}Installing command line tools... ${RESET_FORMAT}"
+msg_info 'Installing command line tools...'
 
 # Install Starship prompt
 if ! starship -V ; then
@@ -19,6 +20,6 @@ if ! tldr -V ; then
 fi
 
 if [[ "$?" == 0 ]]; then
-    echo -e "${GREEN}Command line tools installation complete ${RESET_FORMAT}"
+    msg_success 'Command line tools installation complete'
 fi
 

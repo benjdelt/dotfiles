@@ -9,6 +9,7 @@ readonly BLUE='\033[1;34m'
 readonly BLUE_BOLD='\033[1;94m'
 readonly YELLOW='\033[1;33m'
 readonly YELLOW_BOLD='\033[1;93m'
+readonly RESET_FORMAT='\033[0m'
 
 # All scripts
 
@@ -23,7 +24,7 @@ msg_success () {
 }
 
 msg_warning () {
-    echo -e "${YELLOW}$1${RESET_FORMAT}"
+    echo -e "${YELLOW_BOLD}$1${RESET_FORMAT}"
 }
 
 msg_alert () {
@@ -48,12 +49,6 @@ remove_existing_dir () {
 
 make_link () {
     ln -svf "$1" "$2"
-}
-
-# Restore scripts
-
-restore_file () {
-    cp -frv "$1" "$2"
 }
 
 # Main scripts
