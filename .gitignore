@@ -11,6 +11,9 @@
 # Backup Directory
 backup/
 
+# Debian auto conf file
+*./config/dconf/user
+
 # npm update
 */.config/configstore/update-notifier-npm.json
 
