@@ -34,10 +34,17 @@ if ! npm -v ; then
     sudo apt install npm
 fi
 
+# Update npm using npm
+npm install npm@latest -g
+
 # Install nvm
 if ! nvm -v ; then
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 fi
+
+# Install and use latest LTS version of node.js using nvm
+nvm install --lts
+nvm use --lts
 
 # Install yarn
 if ! yarn --version ; then
