@@ -24,10 +24,8 @@ if ! python3 -m pip -V ; then
 fi
 
 # Install node.js
-if ! node -v ; then
-    curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-    sudo apt install nodejs
-fi
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt install nodejs
 
 # Install npm
 if ! npm -v ; then
