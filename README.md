@@ -5,8 +5,7 @@ A collection of my personal configuration files for:
 - Vim
 - tmux
 - [Starship prompt](https://starship.rs/)
-
-Specific configurations for the terminal itself, using the 
+- Specific configurations for the terminal itself, using the 
 [GNOME terminal](https://help.gnome.org/users/gnome-terminal/stable/) for Linux
 and [wsltty](https://github.com/mintty/wsltty) for WSL.
 
