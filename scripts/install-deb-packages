@@ -54,6 +54,10 @@ if ! ruby -v ; then
     sudo apt install ruby-full
 fi
 
+if ! vim --version ; then
+    sudo apt install vim
+fi
+
 if [[ "$?" == 0 ]]; then
     msg_warning 'Please relaunch the terminal for the changes to take effect'
     msg_success 'Deb packages installation complete'
