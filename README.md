@@ -6,6 +6,10 @@ A collection of my personal configuration files for:
 - tmux
 - [Starship prompt](https://starship.rs/)
 
+Specific configurations for the terminal itself, using the 
+[GNOME terminal](https://help.gnome.org/users/gnome-terminal/stable/) for Linux
+and [wsltty](https://github.com/mintty/wsltty) for WSL.
+
 The repo also includes scripts to setup a machine: installing different
 programming languages and tools. [See the full list of  
 installed packages, tools and plugins](#installed-packages-tools-and-plugins).
