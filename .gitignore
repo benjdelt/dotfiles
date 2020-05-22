@@ -11,9 +11,9 @@
 # Backup Directory
 backup/
 
-# Debian auto conf file
-*./config/dconf/user
+# Remove all .config directory
+*/.config/
 
-# npm update
-*/.config/configstore/update-notifier-npm.json
+# Include specific items form .config directory
+!*/.config/starship.toml
 
