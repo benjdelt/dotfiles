@@ -72,7 +72,6 @@ if [[ $(get_os) = 'linux' ]]; then
 fi
 
 if [[ "$?" == 0 ]]; then
-    msg_warning 'It may be necessary to relaunch the terminal for the changes to take effect'
     msg_success 'Terminal configuration installation complete'
 fi
 
