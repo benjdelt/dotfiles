@@ -27,11 +27,14 @@ while getopts $optlist options; do
 	    msg_info 'Running All install scripts...'
 	    ./scripts/setup-terminal
 	    ./scripts/install-deb-packages
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 	    ./scripts/install-cli-tools
 	    ./scripts/install-dotfiles
 	    ./scripts/setup-vim
             if [[ "$?" == 0 ]]; then
-                msg_success 'Installation script run successfully'
+                msg_success 'Installation script complete'
 	        exit 0 
             fi
 	    ;;
@@ -48,7 +51,7 @@ while getopts $optlist options; do
 	    ./scripts/install-dotfiles
 	    ./scripts/setup-vim
             if [[ "$?" == 0 ]]; then
-                msg_success 'Installation script run successfully'
+                msg_success 'Installation script complete'
 	        exit 0 
             fi
 	    ;;
@@ -59,22 +62,31 @@ OPTIND=1
 # Finally process the rest of the options
 while getopts $optlist options; do
     case ${options} in
-	d) msg_info 'Running install-dotfiles...' 
-	./scripts/install-dotfiles
-	;;
-	p) msg_info 'Running install-deb-packages' 
-	./scripts/install-deb-packages
-	;;
-	t) msg_info 'Running install-cli-tools' 
-	./scripts/install-cli-tools
-	;;
-        T) msg_info 'Running setup-terminal'
-	./scripts/setup-terminal
-	;;
-	v) msg_info 'Running setup-vim...' 
-	./scripts/setup-vim
-	;;
-	\?) echo "Invalid option: $OPTARG" 1>&2
+	d) 
+	    msg_info 'Running install-dotfiles...' 
+            ./scripts/install-dotfiles
+	    ;;
+	p) 
+	    msg_info 'Running install-deb-packages' 
+	    ./scripts/install-deb-packages
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+	    ;;
+	t) 
+	    msg_info 'Running install-cli-tools' 
+	    ./scripts/install-cli-tools
+	    ;;
+        T) 
+	    msg_info 'Running setup-terminal'
+	    ./scripts/setup-terminal
+	    ;;
+	v) 
+	    msg_info 'Running setup-vim...' 
+	    ./scripts/setup-vim
+	    ;;
+	\?)
+	    echo "Invalid option: $OPTARG" 1>&2
             echo "Try './scripts/install -h' for more information" 1>&2
 	    exit 1
 	    ;;
@@ -86,6 +98,6 @@ handle_missing_option OPTIND
 handle_invalid_arg "$#" "$@"
 
 if [[ "$?" == 0 ]]; then
-    msg_info 'Installation script run successfully'
+    msg_info 'Installation script complete'
 fi
 

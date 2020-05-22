@@ -27,22 +27,16 @@ if ! python3 -m pip -V ; then
     sudo apt install python3-venv python3-pip
 fi
 
-# Install node.js
-curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-sudo apt install nodejs
-
-# Install npm
-if ! npm -v ; then
-    sudo apt install npm
-fi
-
-# Update npm using npm
 npm install npm@latest -g
 
 # Install nvm
 if ! nvm -v ; then
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+    curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Install and use latest LTS version of node.js using nvm
 nvm install --lts
@@ -61,5 +55,7 @@ if ! ruby -v ; then
 fi
 
 if [[ "$?" == 0 ]]; then
+    msg_warning 'Please relaunch the terminal for the changes to take effect'
     msg_success 'Deb packages installation complete'
 fi
+

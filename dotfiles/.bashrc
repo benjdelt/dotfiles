@@ -12,11 +12,12 @@ source ~/dotfiles/dotfiles/shell/aliases.sh
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# Deactivated the following to be able to run from script when installing nvm
 # If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+#case $- in
+#    *i*) ;;
+#      *) return;;
+#esac
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -137,8 +138,7 @@ eval "$(starship init bash)"
 
 # Automatically added
 
-# Nove Version Manager
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-

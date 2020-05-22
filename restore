@@ -29,7 +29,7 @@ while getopts $optlist options; do
 	    ./scripts/restore-terminal
 	    ./scripts/restore-vim
             if [[ "$?" == 0 ]]; then
-                msg_success 'Restoration script run successfullyr'
+                msg_success 'Restoration script completer'
 	        exit 0 
             fi
 	    ;;
@@ -45,7 +45,7 @@ while getopts $optlist options; do
 	    ./scripts/restore-dotfiles
 	    ./scripts/restore-vim
             if [[ "$?" == 0 ]]; then
-                msg_success 'Restoration script run successfully'
+                msg_success 'Restoration script complete'
 	        exit 0 
             fi
 	    ;;
@@ -77,6 +77,6 @@ handle_missing_option OPTIND
 handle_invalid_arg "$#" "$@"
 
 if [[ "$?" == 0 ]]; then
-    msg_success 'Restoration script run successfully'
+    msg_success 'Restoration script complete'
 fi
 
