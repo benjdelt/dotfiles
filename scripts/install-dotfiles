@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 readonly BACKUP_DIR=$HOME/dotfiles/backup/dotfiles/
-readonly IGNORE=(.git .gitignore .swp$)
+readonly IGNORE=(.swp$)
 readonly BASE_DIR=$(dirname "$0")/..
 
 cd "$(pwd)/$BASE_DIR" || exit 1
