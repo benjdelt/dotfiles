@@ -17,7 +17,6 @@ installed packages, tools and plugins](#installed-packages-tools-and-plugins).
 
 The scripts assume that the following are already installed:
 - Git
-- Vim >= 8
 
 ## Installation
 
