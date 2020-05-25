@@ -43,7 +43,7 @@ remove_existing_dir () {
     local target_dir=$HOME/$basename
     if [[ -d $1 && -d $target_dir ]]; then
 	echo "target $target_dir"
-	rm -rf "$target_dir"
+	sudo rm -rf "$target_dir"
     fi
 }
 
