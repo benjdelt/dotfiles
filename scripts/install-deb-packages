@@ -54,8 +54,19 @@ if ! ruby -v ; then
     sudo apt install ruby-full
 fi
 
+# Install Vim
 if ! vim --version ; then
     sudo apt install vim
+fi
+
+# Install tmux
+if ! tmux -V ; then
+    sudo apt install tmux
+fi
+
+# Install htop
+if ! htop -v ; then
+    sudo apt install htop
 fi
 
 if [[ "$?" == 0 ]]; then
