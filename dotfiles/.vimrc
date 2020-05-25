@@ -89,9 +89,14 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Declare the list of plugins.
-Plug 'kien/ctrlp.vim'
+" General Plugins
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'dense-analysis/ale'
+
+" Syntax Highlighting
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
 " Colorschemes
 Plug 'altercation/vim-colors-solarized'
