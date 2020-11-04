@@ -10,8 +10,8 @@ A collection of my personal configuration files for:
 and [wsltty](https://github.com/mintty/wsltty) for WSL.
 
 The repo also includes scripts to setup a machine: installing different
-programming languages and tools. [See the full list of  
-installed packages, tools and plugins](#installed-packages-tools-and-plugins).
+programming languages and tools. 
+[See the full list of installed packages, tools and plugins](#installed-packages-tools-and-plugins).
 
 ## Requirements
 
