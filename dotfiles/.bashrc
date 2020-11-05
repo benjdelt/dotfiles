@@ -135,6 +135,9 @@ export PATH="~/.local/bin:$PATH"
 # Enable Starship prompt
 eval "$(starship init bash)"
 
+# Set default editor to Vim
+export VISUAL=vim
+export EDITOR="$VISUAL"
 
 # Automatically added
 
