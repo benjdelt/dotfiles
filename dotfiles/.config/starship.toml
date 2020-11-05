@@ -3,7 +3,8 @@ add_newline = false
 
 [character]
 # Replace prompt symbol
-symbol = "$"
+success_symbol = "[\\$](bold green)"
+error_symbol = "[\\$](bold red)"
 
 [cmd_duration]
 # Disable the time taken by last command
