@@ -13,55 +13,55 @@ readonly RESET_FORMAT='\033[0m'
 
 test_colors () {
     cat ./text/wsl-font.txt
-    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "The quick brown fox jumps over the lazy dog."
     echo -e "${RESET_FORMAT}"
     
     echo -e "${BOLD}"
     cat ./text/wsl-font.txt
-    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "The quick brown fox jumps over the lazy dog."
     echo -e "${RESET_FORMAT}"
     
     echo -e "${RED}"
     cat ./text/wsl-font.txt
-    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "The quick brown fox jumps over the lazy dog."
     echo -e "${RESET_FORMAT}"
     
     echo -e "${RED_BOLD}"
     cat ./text/wsl-font.txt
-    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "The quick brown fox jumps over the lazy dog."
     echo -e "${RESET_FORMAT}"
     
     echo -e "${GREEN}"
     cat ./text/wsl-font.txt
-    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "The quick brown fox jumps over the lazy dog."
     echo -e "${RESET_FORMAT}"
     
     echo -e "${GREEN_BOLD}"
     cat ./text/wsl-font.txt
-    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "The quick brown fox jumps over the lazy dog."
     echo -e "${RESET_FORMAT}"
     
     echo -e "${BLUE}"
     cat ./text/wsl-font.txt
-    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "The quick brown fox jumps over the lazy dog."
     echo -e "${RESET_FORMAT}"
     
     echo -e "${BLUE_BOLD}"
     cat ./text/wsl-font.txt
-    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "The quick brown fox jumps over the lazy dog."
     echo -e "${RESET_FORMAT}"
     
     echo -e "${YELLOW}"
     cat ./text/wsl-font.txt
-    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "The quick brown fox jumps over the lazy dog."
     echo -e "${RESET_FORMAT}"
     
     echo -e "${YELLOW_BOLD}"
     cat ./text/wsl-font.txt
-    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "The quick brown fox jumps over the lazy dog."
     echo -e "${RESET_FORMAT}"
     
     cat ./text/wsl-font.txt
-    echo -e "Droid Sans Mono Nerd Font Complete Mono Windows Compatible"
+    echo -e "The quick brown fox jumps over the lazy dog."
     echo -e "${RESET_FORMAT}"
 }    
