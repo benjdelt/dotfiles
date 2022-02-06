@@ -9,7 +9,7 @@ cd "$(pwd)/$BASE_DIR" || exit 1
 # shellcheck source=./helpers.sh
 source ./scripts/helpers.sh
 
-# Check if a fil is in the IGNORE list
+# Check if a file is in the IGNORE list
 in_ignore () {
     for i in "${IGNORE[@]}"; do
 	if [[ "$1" =~ $i ]]; then

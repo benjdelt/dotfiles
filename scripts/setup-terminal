@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+# #!/usr/bin/env bash
 
 readonly BACKUP_DIR=$HOME/dotfiles/backup/terminal
 readonly BASE_DIR=$(dirname "$0")/..
@@ -20,60 +20,60 @@ if ! curl -V ; then
     sudo apt install curl
 fi
 
-# Backup and link terminal configuration file for WSL
-if [[ $(get_os) = 'wsl' ]]; then
-    # Check if the font is installed
-    is_font=$(find /mnt/c/Windows/Fonts/ -maxdepth 1 -type f -iname 'Droid*') 
-    if [[ -z $is_font ]]; then
-	cd ./font/ || exit 1
-	url='https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.otf'	
-        curl -fLo "Droid Sans Mono Nerd Font Complete Mono Windows Compatible.otf" $url 
-	# Open the Windows explorer so the user can install the font
-	explorer.exe .
-	cd ..
-	# Message to install font
-	wsl_font_msg=$(cat ./text/wsl-font.txt)
-	msg_alert "$wsl_font_msg"
-	msg_alert 'Droid Sans Mono Nerd Font Complete Mono Windows Compatible'
-    fi
-    user_path=$(find /mnt/c/Users/ -maxdepth 1 -type d -iname "$USER_STRING")
-    config_path=$user_path/AppData/Roaming/wsltty
-    # Backup file
-    if [[ -f $config_path/config ]]; then
-        backup_file "$config_path/config" "$BACKUP_DIR/wsltty/"
-    fi
-    # Linux symlinks don't work in Windows, the file must be copied
-    cp -fv "$(pwd)/terminal/wsltty/config" "$config_path/"
-fi
+# # Backup and link terminal configuration file for WSL
+# if [[ $(get_os) = 'wsl' ]]; then
+#     # Check if the font is installed
+#     is_font=$(find /mnt/c/Windows/Fonts/ -maxdepth 1 -type f -iname 'Droid*') 
+#     if [[ -z $is_font ]]; then
+# 	cd ./font/ || exit 1
+# 	url='https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.otf'	
+#         curl -fLo "Droid Sans Mono Nerd Font Complete Mono Windows Compatible.otf" $url 
+# 	# Open the Windows explorer so the user can install the font
+# 	explorer.exe .
+# 	cd ..
+# 	# Message to install font
+# 	wsl_font_msg=$(cat ./text/wsl-font.txt)
+# 	msg_alert "$wsl_font_msg"
+# 	msg_alert 'Droid Sans Mono Nerd Font Complete Mono Windows Compatible'
+#     fi
+#     user_path=$(find /mnt/c/Users/ -maxdepth 1 -type d -iname "$USER_STRING")
+#     config_path=$user_path/AppData/Roaming/wsltty
+#     # Backup file
+#     if [[ -f $config_path/config ]]; then
+#         backup_file "$config_path/config" "$BACKUP_DIR/wsltty/"
+#     fi
+#     # Linux symlinks don't work in Windows, the file must be copied
+#     cp -fv "$(pwd)/terminal/wsltty/config" "$config_path/"
+# fi
 
-# Setup configuration for Linux terminal
-if [[ $(get_os) = 'linux' ]]; then
-    # Check if the font is installed
-    is_font=$(fc-list | grep DroidSansMono) 
-    # If not, dowload it in the right folder
-    if [[ -z $is_font ]]; then
-        mkdir -p "$HOME/.local/share/fonts"
-        cd "$HOME/.local/share/fonts" || exit 1
-	url='https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf'	
-	font_name="Droid Sans Mono Nerd Font Complete.otf"
-        curl -fLo "$font_name"  $url
-	cd - || exit 1
-    fi
-    # Rebuild font-cache
-    fc-cache -f -v
-    # Check if the font is now installed
-    is_font=$(fc-list | grep DroidSansMono) 
-    # If the installation didn't work fall back on the font present in the repo
-    if [[ -z $is_font ]]; then
-        cp "./font/$font_name" "$HOME/.local/share/fonts"
-    fi
-    # Check if the font is now installed
-    is_font=$(fc-list | grep DroidSansMono) 
-    # Configure terminal
-    terminal_profile=$(gsettings get org.gnome.Terminal.ProfilesList default | awk -F \' '{print $2}')
-    gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:"$terminal_profile":/ font 'Droid Sans Mono Nerd Font Complete 11'
-    gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:"$terminal_profile"/ use-system-font false
-fi
+# # Setup configuration for Linux terminal
+# if [[ $(get_os) = 'linux' ]]; then
+#     # Check if the font is installed
+#     is_font=$(fc-list | grep DroidSansMono) 
+#     # If not, dowload it in the right folder
+#     if [[ -z $is_font ]]; then
+#         mkdir -p "$HOME/.local/share/fonts"
+#         cd "$HOME/.local/share/fonts" || exit 1
+# 	url='https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf'	
+# 	font_name="Droid Sans Mono Nerd Font Complete.otf"
+#         curl -fLo "$font_name"  $url
+# 	cd - || exit 1
+#     fi
+#     # Rebuild font-cache
+#     fc-cache -f -v
+#     # Check if the font is now installed
+#     is_font=$(fc-list | grep DroidSansMono) 
+#     # If the installation didn't work fall back on the font present in the repo
+#     if [[ -z $is_font ]]; then
+#         cp "./font/$font_name" "$HOME/.local/share/fonts"
+#     fi
+#     # Check if the font is now installed
+#     is_font=$(fc-list | grep DroidSansMono) 
+#     # Configure terminal
+#     terminal_profile=$(gsettings get org.gnome.Terminal.ProfilesList default | awk -F \' '{print $2}')
+#     gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:"$terminal_profile":/ font 'Droid Sans Mono Nerd Font Complete 11'
+#     gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:"$terminal_profile"/ use-system-font false
+# fi
 
 if [[ "$?" == 0 ]]; then
     msg_success 'Terminal configuration installation complete'
