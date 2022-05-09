@@ -50,9 +50,9 @@ if ! yarn --version ; then
 fi
 
 # Install Ruby
-if ! ruby -v ; then
-    sudo apt install ruby-full
-fi
+# if ! ruby -v ; then
+#     sudo apt install ruby-full
+# fi
 
 # Install Vim
 if ! vim --version ; then
