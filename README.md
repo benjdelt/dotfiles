@@ -4,7 +4,6 @@ A collection of my personal configuration files for:
 - Bash 
 - Vim
 - tmux
-- [Starship prompt](https://starship.rs/)
 - Specific configurations for the terminal itself, using the 
 [GNOME terminal](https://help.gnome.org/users/gnome-terminal/stable/) for Linux
 and [wsltty](https://github.com/mintty/wsltty) for WSL.
@@ -54,7 +53,7 @@ The following are installed by the scripts:
 ./install -T
 ```
 
-- [Droid Sans Mono Nerd Font (for Starship prompt)](https://github.com/ryanoasis/nerd-fonts)
+- cURL
 
 ### Deb Packages
 ```
@@ -67,14 +66,13 @@ The following are installed by the scripts:
 - npm
 - nvm
 - Yarn
-- Ruby
+- ~~Ruby~~
 
 ### Command Line Tools
 ```
 ./install -t
 ```
 
-- [Starship prompt](https://starship.rs/)
 - [tldr pages](https://tldr.sh/)
 
 
